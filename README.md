@@ -1,4 +1,4 @@
-<p align = "center" draggable=”false” ><img src="https://github.com/Tayerquach/brain_encoding_model/blob/master/photo/logo.jpg" 
+<p align = "center" draggable=”false” ><img src="https://github.com/Tayerquach/brain_decoding_model/blob/master/photo/logo.png" 
      width="200px"
      height="auto"/>
 </p>
