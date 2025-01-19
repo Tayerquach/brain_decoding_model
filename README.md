@@ -8,6 +8,124 @@
 
 * Decoding EEG Signals to Explore Next-Word Predictability in the Human Brain.
 
+## Overview
+While traditional ERP analyses, such as univariate approaches, have limitations in providing interpretable visualisations, capturing individual variability, and recognising complex patterns, advanced EEG decoding techniques offer enhanced sensitivity, multivariate analysis capabilities, and greater interpretability. This study demonstrates the efficacy of EEG decoding techniques while providing empirical evidences of the neural mechanisms underlying bottom-up (related to high-order linguistic structure) and top-down (related to next-word predictability) processes, which interact to guide comprehension during reading. We examined how predictability, measured by cloze probability, influences brain response differences between content words (nouns, verbs, adjectives, and adverbs) and function words (pronouns, determiners, auxiliaries, and adpositions), particularly focusing on the N400 time window (300-500 ms post-stimulus), known for its sensitivity to semantic incongruities and predictability in reading.
+
+## Citation
+
+**Link to the paper**:
+
+This repository contains the source code for reproducing the paper, along with step-by-step instructions as follows:
+* [Environment Setup](#environment-setup)
+* [Download Dataset](#download-dataset)
+* [Run Preprocessing](#preprocessing)
+* [Reproduce Results](#reproduce-results)
+
+## Environment Setup
+After cloning repository github, going to the DERCo folder and do the steps as follows
+
+1. Install Python (<a target="_blank" href="https://wiki.python.org/moin/BeginnersGuide">Setup instruction</a>).
+   **Note**: In this project, we used Python 3.10.9
+2. Install Conda (<a target="_blank" href="https://conda.io/projects/conda/en/latest/user-guide/install/index.html">Conda Installation</a>) or similar environment systems
+3. Create a virtual enviroment
+```console 
+conda create --name [name of env] python==[version]
+```
+4. Activate enviroment
+```console 
+conda activate [name of env]
+``` 
+5. Install Python packages
+```console 
+pip3 install -r requirements.txt 
+```
+## Dowload the project (git)
+Clone the project
+```consolde
+git clone https://github.com/Tayerquach/brain_decoding_models.git
+```
+
+Project Organization
+------------
+    ├── README.md          <- The top-level README for developers using this project.
+    ├── data
+    │   ├── EEG_data                    <- 
+    │   ├── label_data                  <-
+    │   ├── fairy_tales_corpus          <-
+    │   ├── article                     <-
+    │   │   ├── correct_words_article_0.npy
+    │   │   ├── correct_words_article_1.npy
+    │   │   ├── correct_words_article_2.npy
+    │   │   ├── correct_words_article_3.npy
+    │   │   ├── correct_words_article_4.npy
+    │   │   ├── sentences_article_0.npy
+    │   │   ├── sentences_article_1.npy
+    │   │   ├── sentences_article_2.npy
+    │   │   ├── sentences_article_3.npy
+    │   │   ├── sentences_article_4.npy
+    │   ├── human_performance         <-
+    │   │   ├── article_0_human_all_predictions.csv
+    │   │   ├── article_0_human_performance.csv
+    │   │   ├── article_0_human_predictions.csv
+    │   │   ├── article_1_human_all_predictions.csv
+    │   │   ├── article_1_human_performance.csv
+    │   │   ├── article_1_human_predictions.csv
+    │   │   ├── ..._human_all_predictions.csv
+    │   │   ├── ..._human_performance.csv
+    │   │   ├── ..._human_predictions.csv
+    │   │   ├── article_4_human_all_predictions.csv
+    │   │   ├── article_4_human_performance.csv
+    │   │   ├── article_4_human_predictions.csv
+    ├── photo
+    ├── utils                   <- contains many functions to preprocess the EEG data.
+    │   ├── config.py 
+    │   ├── eeg_helpers.py
+    │   ├── plot_helpers.py
+    │   ├── predict_eeg.py 
+    │   ├── get_filenames.py  
+    │   ├── get_sentences.py
+    │   ├── process_words.py
+    │   ├── process_Ngrams.py
+    │   └── calculate_metric.py
+    ├── visualization                   <- contains many functions to preprocess the EEG data.
+    │   ├── plot_comparison.py 
+    │   ├── plot_grand_averaged.py
+    │   └── 
+    ├── requirements.txt        <- The requirements file for reproducing the analysis environment, e.g.
+    │                         generated with `pip freeze > requirements.txt`.
+    ├── run_regression.py
+    ├── run_correlation.py
+    ├── run_llms_metric.py
+    ├── run_human_metric.py
+    ├── run_Ngrams_metric.py
+    ├── run_fairy_tales_corpus.py
+    └── run_preprocessing.py
+
+--------
+
+## Download Dataset
+EEG recordings were obtained from 22 native English speakers as they read The Grimm Brothers' Fairy Tales. Word-by-word cloze probabilities for each word were also gathered using a cloze procedure conducted on the Mechanical Turk crowdsourcing platform. Further information on EEG data collection and preprocessing can be found in the <a target="_blank" href="https://www.nature.com/articles/s41597-024-03915-8">DERCo dataset</a>.
+
+### Approach 1:
+To download the DERCo dataset, please
+1. Go directly to the <a target="_blank" href="https://osf.io/rkqbu/files/osfstorage">OSF link</a>.
+2. The follow the path `OSF Storage / EEG-based Reading Experiment / EEG_data`.
+3. After dowloading, move to path: `data/EEG_data/`
+
+### Approach 2:
+1. Install `osf` to download EEG data
+```console
+    pip install osfclient
+```
+2. Fecth the data
+```console
+ osf -p rkqbu clone
+```
+3. Only keep `EEG_data` folder, and move to path: `data/EEG_data/`
+
+**NOTE**: Remove `.gitkeep` files in `data/EEG_data` and `data/fairy_tales_corpus` after downloading data.
+
+
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [Python-url]: https://www.python.org/
