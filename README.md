@@ -115,11 +115,11 @@ To download the DERCo dataset, please
 ### Approach 2:
 1. Install `osf` to download EEG data
 ```console
-    pip install osfclient
+pip install osfclient
 ```
 2. Fecth the data
 ```console
- osf -p rkqbu clone
+osf -p rkqbu clone
 ```
 3. Only keep `EEG_data` folder, and move to path: `data/EEG_data/`
 
