@@ -1,3 +1,4 @@
-EEG_data/preprocessed
-EEG_data/raw
-!EEG_data/.gitkeep
+data/EEG_data/preprocessed
+data/EEG_data/raw
+!data/EEG_data/.gitkeep
+results

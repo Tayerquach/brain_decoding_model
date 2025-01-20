@@ -1,0 +1,15 @@
+N_CHANNELS = 32
+T_MIN = -0.1
+T_MAX = 0.5
+INTERVALS = 0.001
+NUM_TIME_POINTS = int((T_MAX - T_MIN) / INTERVALS)
+
+EEG_PATH = 'data/EEG_data'
+PREPROCESSED_FOLDER = 'preprocessed'
+N_TOPICS = 5
+
+CONTENT_TYPES = ['NOUN','VERB','ADJ','ADV']
+FUNCTION_TYPES = ['PRON','AUX','DET','ADP']
+
+HIGH_CLOZE = ['high']
+LOW_CLOZE = ['low']
