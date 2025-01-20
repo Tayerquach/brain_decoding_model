@@ -20,7 +20,7 @@ def sample_to_match_distribution(baseline, other_p_cloze, other_ids):
     best_ids = None
     best_ks_stat = np.inf
     sample_size = len(baseline)
-    
+
     for _ in tqdm(range(5000), position=0, leave=True):  # Number of iterations
         indices = np.random.choice(len(other_p_cloze), sample_size, replace=False)
         sample = other_p_cloze[indices]
@@ -73,10 +73,10 @@ def convert_data_to_dict():
             article_path = 'article_' + str(topic_id)
             epochs_path = subject_path / subject_id / article_path / file_name
             epochs = mne.read_epochs(epochs_path)
-            metadata = epochs.metadata # Access metadata
+            metadata_temp = epochs.metadata # Access metadata
             # Add a pos column
             df_pos = add_part_of_speech(topic_id) 
-            metadata_df = pd.merge(metadata, df_pos, left_on='word', right_on='word_id', how='left').drop(columns=['word_id'])
+            metadata_df = pd.merge(metadata_temp, df_pos, left_on='word', right_on='word_id', how='inner').drop(columns=['word_id'])
             # Reassign the modified metadata to the epochs object
             epochs.metadata = metadata_df
             
@@ -84,6 +84,7 @@ def convert_data_to_dict():
             epochs = epochs[epochs.metadata['pos'].isin(CONTENT_TYPES + FUNCTION_TYPES)
                         & epochs.metadata['level'].isin(HIGH_CLOZE + LOW_CLOZE)]
             db, temp = create_electrodes_data(epochs)
+            
             temp['word_prefix'] = temp['word'].str.split('_').str[0]
             df = pd.concat([df, db], ignore_index=True)
             metadata = pd.concat([temp, metadata], ignore_index=True)
@@ -260,6 +261,14 @@ def prepare_data(subjects_dict, subject_ids, word_type):
         sample_con2 = metadata_con2['p_cloze'].values
         ids_con2 = metadata_con2['WordID'].values
         
+        import pdb; pdb.set_trace()
+        if len(sample_con1) < 16 or len(sample_con2) < 16:
+            print("Sample size is not enough for analysis")
+            EEG_data = np.array([])
+            labels = np.array([])
+
+            return EEG_data, labels
+
         # Get the sample based on distribution
         best_sample_con1, best_ids_con1 = sample_to_match_distribution(baseline_condition1, sample_con1, ids_con1)
         best_sample_con2, best_ids_con2 = sample_to_match_distribution(baseline_condition2, sample_con2, ids_con2)
@@ -299,20 +308,23 @@ if __name__ == "__main__":
     # Prepare data
     EEG_data, labels = prepare_data(subjects_dict, subject_ids, word_type)
 
-    # Save the data
-    saved_path = 'results'
-    output_folder = Path(saved_path) / word_type
-    # Check if the folder exists, if not create it
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
+    if not EEG_data.size or not labels.size:
+        raise ValueError("EEG_data or labels is empty")
+    else:
+        # Save the data
+        saved_path = 'results'
+        output_folder = Path(saved_path) / word_type
+        # Check if the folder exists, if not create it
+        if not os.path.exists(output_folder):
+            os.makedirs(output_folder)
 
-    # Save labels
-    with open(output_folder / 'labels.pkl', 'wb') as f:
-        pickle.dump(labels, f)
+        # Save labels
+        with open(output_folder / 'labels.pkl', 'wb') as f:
+            pickle.dump(labels, f)
 
-    # Save EEG_data
-    with open(output_folder / 'EEG_data.pkl', 'wb') as f:
-        pickle.dump(EEG_data, f)
+        # Save EEG_data
+        with open(output_folder / 'EEG_data.pkl', 'wb') as f:
+            pickle.dump(EEG_data, f)
 
-    print("Data saved successfully!")
+        print("Data saved successfully!")
 

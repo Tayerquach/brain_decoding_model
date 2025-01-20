@@ -106,7 +106,7 @@ For each word type, the code will generate the corresponding EEG data (including
 ```console
 python run_preparation.py -word_type=[name-of-type]
 ```
-`name-of-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP.
+`name-of-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP, content, function.
 
 For example,
 ```console
