@@ -1,7 +1,7 @@
 import pickle
 import numpy as np
 import pandas as pd
-from utils.config import INTERVALS, N_CHANNELS, N_TOPICS, T_MAX, T_MIN
+from utils.config import CHANNEL_NAMES, INTERVALS, N_CHANNELS, N_TOPICS, T_MAX, T_MIN, LEFT_HEMISPHERE, RIGHT_HEMISPHERE, MIDLINES
 from ipa.preprocessing.tokenizers.spacy_tokenizer import SpacyTokenizer  # For tokenizing text using Spacy
 
 def add_part_of_speech(topic_id):
@@ -88,3 +88,24 @@ def create_electrodes_data(epochs):
     merged_df = pd.merge(db, d_channels, left_index=True, right_index=True)
     
     return merged_df, metadata
+
+def get_channel_name_ids(name):
+    # Define mappings for regions
+    region_map = {
+        "all": CHANNEL_NAMES,
+        "left_hemisphere": LEFT_HEMISPHERE,
+        "right_hemisphere": RIGHT_HEMISPHERE,
+        "midlines": MIDLINES,
+    }
+
+    # Handle special cases
+    if name == "all":
+        indices = list(range(len(CHANNEL_NAMES)))
+        region_channel_names = CHANNEL_NAMES.copy()
+    else:
+        # Get the target region or default to the specific channel name
+        target_region = region_map.get(name, [name])
+        indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in target_region]
+        region_channel_names = [CHANNEL_NAMES[i] for i in indices]
+
+    return indices, region_channel_names

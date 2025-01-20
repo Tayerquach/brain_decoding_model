@@ -261,7 +261,6 @@ def prepare_data(subjects_dict, subject_ids, word_type):
         sample_con2 = metadata_con2['p_cloze'].values
         ids_con2 = metadata_con2['WordID'].values
         
-        import pdb; pdb.set_trace()
         if len(sample_con1) < 16 or len(sample_con2) < 16:
             print("Sample size is not enough for analysis")
             EEG_data = np.array([])
@@ -292,13 +291,13 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description='Data Preparation')
 
     # Add parameters to the parser
-    parser.add_argument('-word_type', type=str, help='Specify the categories')
+    parser.add_argument('-category', type=str, help='Specify the categories')
 
      # Parse the command-line arguments
     args = parser.parse_args()
 
     # Access the parameter values
-    word_type = args.word_type
+    word_type = args.category
 
     # Convert data to dictionary
     subjects_dict = convert_data_to_dict()

@@ -101,16 +101,29 @@ osf -p rkqbu clone
 **NOTE**: Remove `.gitkeep` files in `data/EEG_data` and `data/fairy_tales_corpus` after downloading data.
 
 ## DATA PREPARATION
+### Extract EEG data according word category
 For each word type, the code will generate the corresponding EEG data (including 20 subjects), and the labels. 
 
 ```console
-python run_preparation.py -word_type=[name-of-type]
+python run_preparation.py -category=[name-of-type]
 ```
 `name-of-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP, content, function.
 
 For example,
 ```console
-python run_preparation.py -word_type=function 
+python run_preparation.py -category=function 
+```
+
+### Extract optimal electrode cluster (N400 time window)
+```console
+python extract_optimal_channels.py -category=[word-type] -region=[name-of-electrode-region]
+```
+`word-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP, content, function.
+`name-of-electrode-region`: left_hemisphere, midlines, right_hemisphere.
+
+For example,
+```console
+python extract_optimal_channels.py -category=content -region=right_hemisphere
 ```
 
 <!-- MARKDOWN LINKS & IMAGES -->
