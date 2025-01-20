@@ -218,11 +218,11 @@ def prepare_data(subjects_dict, subject_ids, word_type):
 
     # Iterate through the data to find the minimum high and low values and their corresponding subject_ids
     for i, entry in enumerate(counts_cloze_all):
-        if entry['high'] < min_high_value:
+        if 'high' in entry.keys() and entry['high'] < min_high_value:
             min_high_value = entry['high']
             min_high_subject = subject_ids[i]
         
-        if entry['low'] < min_low_value:
+        if 'low' in entry.keys() and entry['low'] < min_low_value:
             min_low_value = entry['low']
             min_low_subject = subject_ids[i]
 

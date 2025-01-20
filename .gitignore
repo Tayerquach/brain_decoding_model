@@ -2,3 +2,4 @@ data/EEG_data/preprocessed
 data/EEG_data/raw
 !data/EEG_data/.gitkeep
 results
+utils/__pycache__

@@ -18,7 +18,7 @@ While traditional ERP analyses, such as univariate approaches, have limitations 
 This repository contains the source code for reproducing the paper, along with step-by-step instructions as follows:
 * [Environment Setup](#environment-setup)
 * [Download Dataset](#download-dataset)
-* [Run Preprocessing](#preprocessing)
+* [Run Data Preparation](#data-preparation)
 * [Reproduce Results](#reproduce-results)
 
 ## Environment Setup
@@ -50,42 +50,22 @@ Project Organization
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
     │   ├── EEG_data                    <- 
-    │   ├── label_data                  <-
-    │   ├── fairy_tales_corpus          <-
     │   ├── article                     <-
-    │   │   ├── correct_words_article_0.npy
-    │   │   ├── correct_words_article_1.npy
-    │   │   ├── correct_words_article_2.npy
-    │   │   ├── correct_words_article_3.npy
-    │   │   ├── correct_words_article_4.npy
+    │   │   ├── article_0.npy
+    │   │   ├── article_1.npy
+    │   │   ├── article_2.npy
+    │   │   ├── article_3.npy
+    │   │   ├── article_4.npy
     │   │   ├── sentences_article_0.npy
     │   │   ├── sentences_article_1.npy
     │   │   ├── sentences_article_2.npy
     │   │   ├── sentences_article_3.npy
-    │   │   ├── sentences_article_4.npy
-    │   ├── human_performance         <-
-    │   │   ├── article_0_human_all_predictions.csv
-    │   │   ├── article_0_human_performance.csv
-    │   │   ├── article_0_human_predictions.csv
-    │   │   ├── article_1_human_all_predictions.csv
-    │   │   ├── article_1_human_performance.csv
-    │   │   ├── article_1_human_predictions.csv
-    │   │   ├── ..._human_all_predictions.csv
-    │   │   ├── ..._human_performance.csv
-    │   │   ├── ..._human_predictions.csv
-    │   │   ├── article_4_human_all_predictions.csv
-    │   │   ├── article_4_human_performance.csv
-    │   │   ├── article_4_human_predictions.csv
+    │   │   └── sentences_article_4.npy
     ├── photo
     ├── utils                   <- contains many functions to preprocess the EEG data.
     │   ├── config.py 
     │   ├── eeg_helpers.py
     │   ├── plot_helpers.py
-    │   ├── predict_eeg.py 
-    │   ├── get_filenames.py  
-    │   ├── get_sentences.py
-    │   ├── process_words.py
-    │   ├── process_Ngrams.py
     │   └── calculate_metric.py
     ├── visualization                   <- contains many functions to preprocess the EEG data.
     │   ├── plot_comparison.py 
@@ -94,12 +74,7 @@ Project Organization
     ├── requirements.txt        <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`.
     ├── run_regression.py
-    ├── run_correlation.py
-    ├── run_llms_metric.py
-    ├── run_human_metric.py
-    ├── run_Ngrams_metric.py
-    ├── run_fairy_tales_corpus.py
-    └── run_preprocessing.py
+    └── run_preparation.py
 
 --------
 
@@ -125,6 +100,18 @@ osf -p rkqbu clone
 
 **NOTE**: Remove `.gitkeep` files in `data/EEG_data` and `data/fairy_tales_corpus` after downloading data.
 
+## DATA PREPARATION
+For each word type, the code will generate the corresponding EEG data (including 20 subjects), and the labels. 
+
+```console
+python run_preparation.py -word_type=[name-of-type]
+```
+`name-of-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP.
+
+For example,
+```console
+python run_preparation.py -word_type=function 
+```
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
