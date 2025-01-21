@@ -118,8 +118,8 @@ python run_preparation.py -category=function
 ```console
 python extract_optimal_channels.py -category=[word-type] -region=[name-of-electrode-region]
 ```
-`word-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP, content, function.
-`name-of-electrode-region`: left_hemisphere, midlines, right_hemisphere.
+* `word-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP, content, function.
+* `name-of-electrode-region`: left_hemisphere, midlines, right_hemisphere.
 
 For example,
 ```console
