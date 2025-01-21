@@ -4,3 +4,4 @@ data/EEG_data/raw
 results
 utils/__pycache__
 photo/*/
+univariate_data
