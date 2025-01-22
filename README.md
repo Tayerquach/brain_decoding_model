@@ -49,8 +49,8 @@ Project Organization
 ------------
     ├── README.md          <- The top-level README for developers using this project.
     ├── data
-    │   ├── EEG_data                    <- 
-    │   ├── article                     <-
+    │   ├── EEG_data                    <- Contains raw or preprocessed EEG data used for analysis.
+    │   ├── article                     <- Stores articles and their corresponding sentence-level data in .npy format.
     │   │   ├── article_0.npy
     │   │   ├── article_1.npy
     │   │   ├── article_2.npy
@@ -61,25 +61,21 @@ Project Organization
     │   │   ├── sentences_article_2.npy
     │   │   ├── sentences_article_3.npy
     │   │   └── sentences_article_4.npy
-    ├── photo
-    ├── utils                   <- contains many functions to preprocess the EEG data.
-    │   ├── analysis_helpers.py
-    │   ├── config.py 
-    │   ├── eeg_helpers.py
-    │   ├── plot_helpers.py
-    │   └── techniques.py
-    ├── visualization                   <- contains many functions to preprocess the EEG data.
-    │   ├── plot_comparison.py 
-    │   ├── plot_grand_averaged.py
-    │   └── 
+    ├── photo  <- contain visualizations, graphs, or images generated or used in the project.
+    ├── utils                   <- support preprocessing, analysis, and plotting.
+    │   ├── analysis_helpers.py <- Provides helper functions for statistical or computational analysis of EEG data.
+    │   ├── config.py           <- Contains configuration settings and constants used across the project, such as paths, hyperparameters, or global variables.
+    │   ├── eeg_helpers.py      <- Includes functions for preprocessing and managing EEG data, such as cleaning, filtering, or epoching the data.
+    │   ├── plot_helpers.py     <- Contains plotting functions to generate visualizations, such as ERP plots, raincloud plots, or channel maps.
+    │   └── techniques.py      <- Contains helper functions for EEG analysis, such as univariate analysis and decoding method.
     ├── requirements.txt        <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`.
-    ├── decode_word_class.py
-    ├── extract_optimal_channels.py
-    ├── run_class_analysis.py
-    ├── run_raincloud.py
-    ├── run_cohen_dz.py
-    └── run_preparation.py
+    ├── decode_word_class.py    <- Decode word classes from EEG data, potentially distinguishing between different semantic categories like "content" and "function" words.
+    ├── extract_optimal_channels.py <- Identify and extract optimal EEG channels for ERP analysis
+    ├── run_class_analysis.py      <- Executes class-level analysis on the EEG data, focusing on performance metrics and comparisons between conditions (e.g., high vs. low cloze).
+    ├── run_raincloud.py  <- Generates raincloud plots for visualizing data distributions.
+    ├── run_cohen_dz.py   <- Calculates and visualises Cohen’s d (effect size) for paired samples from EEG data.
+    └── run_preparation.py <- Handles data preparation tasks, such as loading, cleaning, or transforming the EEG and article data into formats suitable for analysis.
 
 --------
 
