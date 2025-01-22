@@ -1,6 +1,9 @@
 from decimal import Decimal
+import os
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
+import seaborn as sns
+from ptitprince import PtitPrince as pt
 import warnings
 import numpy as np
 from scipy.stats import ttest_1samp, ttest_rel
@@ -268,3 +271,136 @@ def plot_decoding_acc_tbyt(acc, start_time=0, end_time=1, time_interval=0.01, ch
 
     plt.title(title, fontsize=title_fontsize, pad=20)
     plt.show()
+
+def plot_raincloud_diff(df, group):
+    output_folder = f'photo/raincloud/{group}'
+    # Check if the folder exists, if not create it
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Rainclouds with FacetGrid according to conditions separately (including three regions) 
+    g = sns.FacetGrid(df, col = "Condition", height = 6)
+    g = g.map_dataframe(pt.RainCloud, x = "Region", y = "Diff_amp", data = df, bw = 0.2, width_box = .2, point_size = 1,
+                    width_viol = 0.5, orient = "v", pointplot = True)
+
+    # Adjust the space between the graphs
+    g.fig.subplots_adjust(top=0.85, wspace=0.4) # Increase the horizontal space between plots
+    g.set_ylabels('Difference amplitude ($\mu$V)', fontsize=14)
+
+    # Set titles with a larger font size
+    g.set_titles(col_template='{col_name}', size=16)  # Adjust size as needed
+
+    # Adjust the font size of the tick labels and axis labels
+    for ax in g.axes.flat:
+        ax.yaxis.set_tick_params(labelleft=True)
+        ax.tick_params(axis='x', labelsize=12)      # Adjust x-axis tick label font size
+        ax.tick_params(axis='y', labelsize=12)      # Adjust y-axis tick label font size
+    g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
+    plt.savefig(f'{output_folder}/conditions_difference_amplitude_distribution.png', bbox_inches='tight')
+
+    # Rainclouds with FacetGrid according to conditions separately (including three regions) TOGETHER
+    # Now with the group as hue
+    pal = "Set2"
+    sigma = .2
+    ort = "v"
+    dx = "Region"; dy = "Diff_amp"; dhue = "Condition"
+    f, ax = plt.subplots(figsize=(12, 6))
+
+    ax=pt.RainCloud(x = dx, y = dy, hue=dhue, data = df, palette = pal, bw = sigma, width_viol = .5, point_size = 1, width_box = .2,
+                    ax = ax, orient = ort , alpha = .65, dodge = True, pointplot = True, move = 0)
+    ax.set_ylabel('Absolute Difference amplitude ($\mu$V)', fontsize=20)
+    # Hide x-axis labels
+    ax.set_xlabel("", fontsize=14)  # Removes the x-axis label
+    ax.tick_params(axis='x', labelsize=20)      # Adjust x-axis tick label font size
+    ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    # Adjust the legend size and position inside the plot
+    # Get the handles and labels from the current legend
+    handles, labels = ax.get_legend_handles_labels()
+
+    # Filter out duplicates: Keep only the first occurrence of each label
+    filtered_handles = []
+    filtered_labels = []
+    seen_labels = set()
+
+    for handle, label in zip(handles, labels):
+        if label not in seen_labels:
+            filtered_handles.append(handle)
+            filtered_labels.append(label)
+            seen_labels.add(label)
+        
+        # Stop after adding two unique conditions
+        if len(filtered_labels) == 2:
+            break
+
+    # Create the custom legend with only two unique conditions
+    ax.legend(filtered_handles, filtered_labels, fontsize=20, loc='upper right', bbox_to_anchor=(1.01, 1.35), frameon=True)
+    plt.title("N400 (300 - 500 ms)",  fontsize=22)
+    plt.savefig(f'{output_folder}/together_regions_difference_amplitude_distribution.png', dpi=500, bbox_inches='tight')
+
+    # Rainclouds with FacetGrid according to regions separately (including different conditions) SEPARATELY
+    g = sns.FacetGrid(df, col = "Region", height = 6)
+    g = g.map_dataframe(pt.RainCloud, x = "Condition", y = "Diff_amp", data = df, bw = 0.2, width_box = .2, point_size = 1,
+                    width_viol = 0.5, orient = "v", pointplot = True)
+
+    # Adjust the space between the graphs
+    g.fig.subplots_adjust(top=0.85, wspace=0.2) # Increase the horizontal space between plots
+    g.set_ylabels('Absolute Difference amplitude ($\mu$V)', fontsize=20)
+
+    # Set titles with a larger font size
+    g.set_titles(col_template='{col_name}', size=20)  # Adjust size as needed
+
+    # Adjust the font size of the tick labels and axis labels
+    for ax in g.axes.flat:
+        ax.yaxis.set_tick_params(labelleft=True)
+        ax.tick_params(axis='x', labelsize=20)      # Adjust x-axis tick label font size
+        ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
+    plt.savefig(f'{output_folder}/separate_regions_difference_amplitude_distribution.png', dpi=500, bbox_inches='tight')
+
+
+def plot_raincloud_decoding(df, group):
+    
+    output_folder = f'photo/raincloud/{group}'
+    # Check if the folder exists, if not create it
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+
+    # Rainclouds with FacetGrid according to conditions
+    g = sns.FacetGrid(df, col = "Condition", height = 6)
+    g = g.map_dataframe(pt.RainCloud, x = "Region", y = "Accuracy", data = df, bw = 0.2, width_box = .2, point_size = 1,
+                    width_viol = 0.5, orient = "v", pointplot = True)
+
+    # Adjust the space between the graphs
+    g.fig.subplots_adjust(top=0.85, wspace=0.2) # Increase the horizontal space between plots
+    g.set_ylabels('Decoding Accuracy', fontsize=20)
+
+    # Set titles with a larger font size
+    g.set_titles(col_template='{col_name}', size=20)  # Adjust size as needed
+
+    # Adjust the font size of the tick labels and axis labels
+    for ax in g.axes.flat:
+        ax.yaxis.set_tick_params(labelleft=True)
+        ax.tick_params(axis='x', labelsize=17)      # Adjust x-axis tick label font size
+        ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
+    plt.savefig(f'{output_folder}/conditions_decoding_accuracies_distribution.png', dpi=400, bbox_inches='tight')
+
+    # Rainclouds with FacetGrid according to regions
+    g = sns.FacetGrid(df, col = "Region", height = 6)
+    g = g.map_dataframe(pt.RainCloud, x = "Condition", y = "Accuracy", data = df, bw = 0.2, width_box = .2, point_size = 1,
+                    width_viol = 0.5, orient = "v", pointplot = True)
+
+    # Adjust the space between the graphs
+    g.fig.subplots_adjust(top=0.85, wspace=0.2) # Increase the horizontal space between plots
+    g.set_ylabels('Decoding Accuracy', fontsize=20)
+
+    # Set titles with a larger font size
+    g.set_titles(col_template='{col_name}', size=20)  # Adjust size as needed
+
+    # Adjust the font size of the tick labels and axis labels
+    for ax in g.axes.flat:
+        ax.yaxis.set_tick_params(labelleft=True)
+        ax.tick_params(axis='x', labelsize=20)      # Adjust x-axis tick label font size
+        ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
+    plt.savefig(f'{output_folder}/regions_decoding_accuracies_distribution.png', dpi=500, bbox_inches='tight')
