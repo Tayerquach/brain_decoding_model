@@ -10,13 +10,7 @@ from utils.config import INTERVALS, T_MAX, T_MIN
 import matplotlib.pyplot as plt
 
 
-if __name__ == '__main__':
-    # Create the time vector
-    t_min = T_MIN * 1000
-    t_max = T_MAX * 1000
-    step  = INTERVALS * 1000
-    times = np.arange(t_min, t_max, step)   
-
+if __name__ == '__main__': 
     # Create an argument parser
     parser = argparse.ArgumentParser(description='Word class analysis')
 
