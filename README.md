@@ -132,7 +132,7 @@ python extract_optimal_channels.py -category=content -region=right_hemisphere
 ```
 
 ## Reproduce Results
-**Note:**: Looking at the folder `photo` to get all results.
+**Note:** Looking at the folder `photo` to get all results.
 
 ***Parameters:***
 * `word-type`: content, function, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET.
