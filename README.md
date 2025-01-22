@@ -78,6 +78,7 @@ Project Organization
     ├── extract_optimal_channels.py
     ├── run_class_analysis.py
     ├── run_raincloud.py
+    ├── run_cohen_dz.py
     └── run_preparation.py
 
 --------
@@ -131,6 +132,8 @@ python extract_optimal_channels.py -category=content -region=right_hemisphere
 ```
 
 ## Reproduce Results
+**Note:**: Looking at the folder `photo` to get all results.
+
 ***Parameters:***
 * `word-type`: content, function, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET.
 * `region-name`: left_hemisphere, midlines, right_hemisphere.
@@ -161,6 +164,37 @@ For example,
 python decode_word_class.py -category=function -region=right_hemisphere -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
 
+### Rain Cloud Visualisation
+1. Raincloud plots displaying the absolute difference in a specific time window (e.g., N400 amplitude).
+
+2. Raincloud plots showing decoding accuracy for distinguishing between high and low cloze conditions during a specific time window (e.g., N400 time window).
+
+```console
+python run_raincloud.py -category=[group] -technique=[name-technique] -start_window=[start] -end_window=[end]  
+```
+* `group`: lexical class (content vs. function words), content_group (NOUN vs. VERB), function_group (DET vs. PRON)
+* `name-technique`: univariate, decoding
+
+For example,
+
+```console
+python run_raincloud.py -category=lexical_class -technique=univariate -start_window=300 -end_window=500  
+```
+For example,
+
+```console
+python run_raincloud.py -category=lexical_class -technique=decoding -start_window=300 -end_window=500  
+```
+
+### Cohen's dz Analysis
+```console
+python run_cohen_dz.py -category=[word-type] -region=[name-region] -start_window=[start] -end_window=[end] 
+```
+
+For example,
+```console
+python run_cohen_dz.py -category=NOUN -region=right_hemisphere -start_window=300 -end_window=500 
+```
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [Python-url]: https://www.python.org/
