@@ -63,17 +63,21 @@ Project Organization
     │   │   └── sentences_article_4.npy
     ├── photo
     ├── utils                   <- contains many functions to preprocess the EEG data.
+    │   ├── analysis_helpers.py
     │   ├── config.py 
     │   ├── eeg_helpers.py
     │   ├── plot_helpers.py
-    │   └── calculate_metric.py
+    │   └── techniques.py
     ├── visualization                   <- contains many functions to preprocess the EEG data.
     │   ├── plot_comparison.py 
     │   ├── plot_grand_averaged.py
     │   └── 
     ├── requirements.txt        <- The requirements file for reproducing the analysis environment, e.g.
     │                         generated with `pip freeze > requirements.txt`.
-    ├── run_regression.py
+    ├── decode_word_class.py
+    ├── extract_optimal_channels.py
+    ├── run_class_analysis.py
+    ├── run_raincloud.py
     └── run_preparation.py
 
 --------
