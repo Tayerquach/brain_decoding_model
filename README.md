@@ -131,10 +131,7 @@ python extract_optimal_channels.py -category=content -region=right_hemisphere
 ```
 
 ## Reproduce Results
-### Univariate ERP analysis
-```console
-python run_class_analysis.py -category=[word-type] -region=[region-name] -permutation=[True or False] -p_value=[p_value] -clusterp=[clusterp] -n_iter=[number-of-iteration]
-```
+***Parameters:***
 * `word-type`: content, function, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET.
 * `region-name`: left_hemisphere, midlines, right_hemisphere.
 * `permutation`: Conduct cluster-based permutation test or not (True or False).
@@ -142,11 +139,28 @@ python run_class_analysis.py -category=[word-type] -region=[region-name] -permut
 * `clusterp`: The threshold of cluster-defining p-values (e.g., 0.05, 0.001 ...).
 * `n_iter`: The times for iteration (e.g., 1000, 5000, 10000 ...).
 
+### Univariate ERP analysis
+```console
+python run_class_analysis.py -category=[word-type] -region=[region-name] -permutation=[True or False] -p_value=[p_value] -clusterp=[clusterp] -n_iter=[number-of-iteration]
+```
+
 For example,
 
 ```console
 python run_class_analysis.py -category=NOUN -region=right_hemisphere -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
+
+### Decoding EEG signals
+```console
+python decode_word_class.py -category=[word-type] -region=[name-region] -permutation=[True or False] -p_value=[p_value] -clusterp=[clusterp] -n_iter=[number-of-iteration]
+```
+
+For example,
+
+```console
+python decode_word_class.py -category=function -region=right_hemisphere -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
+```
+
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [Python-url]: https://www.python.org/
