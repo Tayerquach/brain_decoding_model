@@ -73,9 +73,9 @@ if __name__ == '__main__':
     # Plot decoding accuracies time by time
     fig = plt.figure(figsize=(14, 8))
     title = f'EEG Decoding between high and low cloze for {word_type.capitalize()} in {region}'
-    plot_decoding_acc_tbyt(accuracies, start_time=t_min, end_time=t_max, time_interval=step, chance=0.5, p=p_value, 
+    plot_decoding_acc_tbyt(accuracies, start_time=T_MIN, end_time=T_MAX, time_interval=INTERVALS, chance=0.5, p=p_value, 
                            cluster_permutation=cluster_permutation, clusterp=clusterp, iter=n_iter,
-                           stats_time=[t_min, t_max], title=None, color='g', xlim=[-0.1, 0.5], ylim=[0.4, 0.7], avgshow=True)
+                           stats_time=[T_MIN, T_MAX], title=None, color='g', xlim=[-0.1, 0.5], ylim=[0.4, 0.7], avgshow=True)
     plt.show()
     fig.savefig(output_folder + f'/decoding_eeg_in_{name_region}_for_{word_type}.jpg')
 

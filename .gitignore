@@ -5,3 +5,4 @@ results
 utils/__pycache__
 photo/*/
 univariate_data
+decoding_data
