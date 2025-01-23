@@ -183,13 +183,14 @@ python run_raincloud.py -category=lexical_class -technique=decoding -start_windo
 ```
 
 ### Cohen's dz Analysis
+
 ```console
-python run_cohen_dz.py -category=[word-type] -region=[name-region] -start_window=[start] -end_window=[end] 
+python run_cohen_dz.py -category=[word-type] -start_window=[start] -end_window=[end] 
 ```
 
 For example,
 ```console
-python run_cohen_dz.py -category=NOUN -region=right_hemisphere -start_window=300 -end_window=500 
+python run_cohen_dz.py -category=NOUN -start_window=300 -end_window=500 
 ```
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54

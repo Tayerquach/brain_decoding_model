@@ -2,6 +2,7 @@
 import argparse
 import pickle
 import numpy as np
+from utils.analysis_helpers import prepare_data_word_class
 from scipy.stats import bootstrap
 import matplotlib.pyplot as plt
 from utils.config import CHANNEL_NAMES, INTERVALS, T_MIN, best_clusters
@@ -30,17 +31,41 @@ def get_time_window(start_idx, end_idx):
 
     return [adjusted_start, adjusted_end]
 
-def prepare_data_for_cohendz(category, name_region, time_window):
+def prepare_data_diff(category):
     '''
         Import data
     '''
-    output_folder = f'univariate_data/word_class/{category}'
-    with open(output_folder + f'/erp_diff_{name_region}_window.pkl', 'rb') as file:
-        ERP_diff_category_region_window = pickle.load(file)           
+
+    EEG_data, labels = prepare_data_word_class(category)   
+    # Regions
+    best_channels = best_clusters[f'{category}_selected_chans']
+    best_indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in(best_channels)]
+
+    # EEG_data
+    EEG_data_region = EEG_data[:,:, best_indices, :] * 1e6
+    # EEG_high_cloze will contain columns of data where the corresponding label is 0
+    EEG_high_cloze_category_region = EEG_data_region[:, labels[0] == 0, :, :]
+    EEG_high_cloze_category_region_window = EEG_high_cloze_category_region[:, :, :, time_window[0]:time_window[1]] # (300-500 ms)
+
+    # EEG_low_cloze will contain columns of data where the corresponding label is 1
+    EEG_low_cloze_category_region = EEG_data_region[:, labels[0] == 1, :, :]
+    EEG_low_cloze_category_region_window= EEG_low_cloze_category_region[:, :, :, time_window[0]:time_window[1]] # (300-500 ms)
+    # EEG difference between high vs. low cloze
+    ERP_diff_category_region_window = np.average(EEG_high_cloze_category_region_window, axis=(1,2)) - np.average(EEG_low_cloze_category_region_window, axis=(1,2))
+
+    return ERP_diff_category_region_window
+
+def prepare_data_for_cohendz(category, time_window):
+    '''
+        Import data
+    '''
+
+    ERP_diff_category_region_window = prepare_data_diff(category)        
     print("ERP_diff_category_region_window shape: ", ERP_diff_category_region_window.shape)
+    
 
     # Content accuracies
-    with open(f'decoding_data/word_class/{category}/word_class_{name_region}_accuracies.pkl', 'rb') as f:
+    with open(f'decoding_data/word_class/{category}/word_class_all_accuracies.pkl', 'rb') as f:
         content_accuracies = pickle.load(f)
     # N400 window - Content words
     content_accuracies_window = content_accuracies[:,time_window[0]:time_window[1]]
@@ -166,7 +191,7 @@ if __name__ == "__main__":
 
     # Add parameters to the parser
     parser.add_argument('-category', type=str, help='Specify the word group')
-    parser.add_argument('-region', type=str, help='Specify the brain region')
+    # parser.add_argument('-region', type=str, help='Specify the brain region')
     parser.add_argument('-start_window', type=int, help='Specify the beginning of time window')
     parser.add_argument('-end_window', type=int, help='Specify the end of time window')
 
@@ -175,13 +200,13 @@ if __name__ == "__main__":
 
     # Access the parameter values
     word_type = args.category
-    name_region = args.region
+    # name_region = args.region
     start_window = args.start_window 
     end_window = args.end_window
 
     # Load data
     time_window = get_time_window(start_window, end_window)
-    ERP_diff_category_region_window, content_accuracies_window = prepare_data_for_cohendz(word_type, name_region, time_window)
+    ERP_diff_category_region_window, content_accuracies_window = prepare_data_for_cohendz(word_type, time_window)
     
     # Cohen's dz calculation
     bootstrap_mean_dz_group_erp, sem_dz_group_erp, bootstrap_mean_dz_group_svm, sem_dz_group_svm = calculate_dz_for_viz(ERP_diff_category_region_window, content_accuracies_window)
@@ -189,7 +214,8 @@ if __name__ == "__main__":
     # Visualise Cohen's dz
     fig, ax = plt.subplots(figsize=(6, 8))
     viz_cohen_dz(bootstrap_mean_dz_group_erp, sem_dz_group_erp, bootstrap_mean_dz_group_svm, sem_dz_group_svm, ax)
-    fig.savefig(f'photo/{word_type}/{name_region}_cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
+    fig.savefig(f'photo/{word_type}/cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
 
     print("Running Successfully!")
+    print(f"Result is saved in photo/{word_type}/cohen_dz_analysis.png")
     
