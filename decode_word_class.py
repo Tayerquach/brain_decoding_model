@@ -43,16 +43,20 @@ if __name__ == '__main__':
     indices, region_channels =  get_channel_name_ids(name_region)
     EEG_data_region = EEG_data[:,:, indices, :] * 1e6
 
-    # Decoding EEG data and validating results using K-fold cross validation
-    accuracies = classification_decoding_kfold(EEG_data_region, labels, n_class=2, time_win=1, time_step=1, n_folds=5, n_repeats=100, normalization=True)
+    # # Decoding EEG data and validating results using K-fold cross validation
+    # accuracies = classification_decoding_kfold(EEG_data_region, labels, n_class=2, time_win=1, time_step=1, n_folds=5, n_repeats=100, normalization=True)
 
     # Save the arrays to a pickle file
     output_folder = f'decoding_data/word_class/{word_type}'
-    # Check if the folder exists, if not create it
-    if not os.path.exists(output_folder):
-        os.makedirs(output_folder)
-    with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'wb') as file:
-        pickle.dump(accuracies, file)
+    # # Check if the folder exists, if not create it
+    # if not os.path.exists(output_folder):
+    #     os.makedirs(output_folder)
+    # with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'wb') as file:
+    #     pickle.dump(accuracies, file)
+
+    with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'rb') as file:
+        accuracies = pickle.load(file)
+
 
     # Create the region name
     region = name_region.replace('_', ' ')

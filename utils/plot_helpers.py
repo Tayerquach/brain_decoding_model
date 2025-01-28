@@ -62,7 +62,7 @@ def plot_erp_2cons_results(p_vals, avg1, err1, avg2, err2, times, con_labels=['C
     # Adjust the ylabel position
     ax = plt.gca()
     ax.yaxis.set_label_coords(0.1, 0.75)
-    plt.legend(loc='upper right', bbox_to_anchor=(1.05, 1.5), fontsize=14)
+    # plt.legend(loc='upper right', bbox_to_anchor=(1.05, 1.5), fontsize=14)
     # Add legend manually with custom positions
     legend1 = plt.Line2D([0], [0], color='red', label=con_labels[0])
     legend2 = plt.Line2D([0], [0], color='green', label=con_labels[1])
@@ -261,7 +261,7 @@ def plot_decoding_acc_tbyt(acc, start_time=0, end_time=1, time_interval=0.01, ch
     plt.tick_params(labelsize=ticksize)
     plt.xlabel(xlabel, fontsize=fontsize)
     plt.ylabel(ylabel, fontsize=fontsize, labelpad=labelpad)
-    # # Adjust the ylabel position
+    # Adjust the ylabel position
     ax.yaxis.set_label_coords(0.05, 0.75)
     # legend1 = plt.Line2D([0], [0], color='red', label=label)
     legend2 = mlines.Line2D([0], [0], color=color, linewidth=8, label='Accuracies', alpha=0.35)
@@ -357,6 +357,7 @@ def plot_raincloud_diff(df, group):
     g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
     plt.savefig(f'{output_folder}/separate_regions_difference_amplitude_distribution.png', dpi=500, bbox_inches='tight')
 
+    
 
 def plot_raincloud_decoding(df, group):
     
@@ -383,7 +384,48 @@ def plot_raincloud_decoding(df, group):
         ax.tick_params(axis='x', labelsize=17)      # Adjust x-axis tick label font size
         ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
     g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
-    plt.savefig(f'{output_folder}/conditions_decoding_accuracies_distribution.png', dpi=400, bbox_inches='tight')
+    plt.savefig(f'{output_folder}/separate_conditions_decoding_accuracies_distribution.png', dpi=400, bbox_inches='tight')
+
+    # Together
+    # Rainclouds with FacetGrid according to conditions separately (including three regions) TOGETHER
+    # Now with the group as hue
+    pal = "Set2"
+    sigma = .2
+    ort = "v"
+    dx = "Region"; dy = "Accuracy"; dhue = "Condition"
+    f, ax = plt.subplots(figsize=(12, 6))
+
+    ax=pt.RainCloud(x = dx, y = dy, hue=dhue, data = df, palette = pal, bw = sigma, width_viol = .5, point_size = 1, width_box = .2,
+                    ax = ax, orient = ort , alpha = .65, dodge = True, pointplot = True, move = 0)
+    ax.set_ylabel('Decoding Accuracy', fontsize=20)
+    # Hide x-axis labels
+    ax.set_xlabel("", fontsize=14)  # Removes the x-axis label
+    ax.tick_params(axis='x', labelsize=20)      # Adjust x-axis tick label font size
+    ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    # Adjust the legend size and position inside the plot
+    # Get the handles and labels from the current legend
+    handles, labels = ax.get_legend_handles_labels()
+
+    # Filter out duplicates: Keep only the first occurrence of each label
+    filtered_handles = []
+    filtered_labels = []
+    seen_labels = set()
+
+    for handle, label in zip(handles, labels):
+        if label not in seen_labels:
+            filtered_handles.append(handle)
+            filtered_labels.append(label)
+            seen_labels.add(label)
+        
+        # Stop after adding two unique conditions
+        if len(filtered_labels) == 2:
+            break
+
+    # Create the custom legend with only two unique conditions
+    ax.legend(filtered_handles, filtered_labels, fontsize=20, loc='upper right', bbox_to_anchor=(1.01, 1.35), frameon=True)
+    plt.title("N400 (300 - 500 ms)",  fontsize=22)
+    plt.savefig(f'{output_folder}/together_regions_decoding_accuracy_distribution.png', dpi=500, bbox_inches='tight')
+
 
     # Rainclouds with FacetGrid according to regions
     g = sns.FacetGrid(df, col = "Region", height = 6)
