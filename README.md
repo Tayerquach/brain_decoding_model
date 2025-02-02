@@ -189,12 +189,14 @@ python run_raincloud.py -category=lexical_class -technique=decoding -start_windo
 ### Cohen's dz Analysis
 
 ```console
-python run_cohen_dz.py -category=[word-type] -start_window=[start] -end_window=[end] 
+python run_cohen_dz.py -category=[word-type] -optimal=[True or False] -start_window=[start] -end_window=[end] 
 ```
+
+Note that the `optimal` parameter will decide whether the optimal electrodes for ERP analysis will be averaged or not. If not, the data will be averaged across all electrodes.
 
 For example,
 ```console
-python run_cohen_dz.py -category=NOUN -start_window=300 -end_window=500 
+python run_cohen_dz.py -category=NOUN -optimal=True -start_window=300 -end_window=500 
 ```
 
 ## Contact 
