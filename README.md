@@ -172,7 +172,7 @@ python decode_word_class.py -category=function -region=right_hemisphere -permuta
 ```console
 python run_raincloud.py -category=[group] -technique=[name-technique] -start_window=[start] -end_window=[end]  
 ```
-* `group`: lexical class (content vs. function words), content_group (NOUN vs. VERB), function_group (DET vs. PRON)
+* `group`: lexical_class (content vs. function words), content_group (NOUN vs. VERB), function_group (DET vs. PRON)
 * `name-technique`: univariate, decoding
 
 For example,
