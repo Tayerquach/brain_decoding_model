@@ -275,8 +275,8 @@ def prepare_data(subjects_dict, subject_ids, word_type):
         ## Get EEG data and labels
         indices_con1 = metadata[metadata['WordID'].isin(best_ids_con1)].index.tolist()
         indices_con2 = metadata[metadata['WordID'].isin(best_ids_con2)].index.tolist()
-        EEG_data_con1 = EEG_data[indices_con1, :, :]
-        EEG_data_con2  = EEG_data[indices_con2, :, :]
+        EEG_data_con1 = EEG_data[indices_con1, :, :] #High - 0
+        EEG_data_con2  = EEG_data[indices_con2, :, :] # Low - 1
         new_EEG_data = np.concatenate((EEG_data_con1, EEG_data_con2), axis=0)
         all_EEG_subs.append(new_EEG_data)
     

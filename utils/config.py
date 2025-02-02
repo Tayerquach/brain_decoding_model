@@ -20,10 +20,8 @@ LEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P
 RIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']
 MIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']
 best_clusters = {
-    "content_selected_chans": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],
-    "function_selected_chans": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],
-    "NOUN_selected_chans": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],
-    "VERB_selected_chans": ['P3', 'P7', 'CP1', 'O1', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],
-    "DET_selected_chans": ['FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'FT10', 'FC2', 'C4', 'CP2', 'Fp2', 'F4', 'F8'],
-    "PRON_selected_chans": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9', 'Fz', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],
+    "content_selected_chans": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],
+    "function_selected_chans": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],
+    "NOUN_selected_chans": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],
+    "VERB_selected_chans": ['T8', 'CP6', 'FT9', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],
 }

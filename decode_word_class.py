@@ -2,7 +2,7 @@ import argparse
 import os
 import pickle
 import numpy as np
-from utils.plot_helpers import plot_decoding_acc_tbyt
+from utils.plot_helpers import plot_decoding_acc_tbyt, str2bool
 from utils.techniques import classification_decoding_kfold
 from utils.eeg_helpers import get_channel_name_ids
 from utils.analysis_helpers import prepare_data_word_class
@@ -17,7 +17,7 @@ if __name__ == '__main__':
     # Add parameters to the parser
     parser.add_argument('-category', type=str, help='Specify the word type e.g, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET')
     parser.add_argument('-region', type=str, help='Specify the brain region')
-    parser.add_argument('-permutation', type=bool, help='Conduct cluster-based permutation test or not')
+    parser.add_argument('-permutation', type=str2bool, nargs='?', const=True, default=False, help='Conduct cluster-based permutation test or not')
     parser.add_argument('-p_value', type=float, help='The threshold of p-values')
     parser.add_argument('-clusterp', type=float, help='The threshold of cluster-defining p-values')
     parser.add_argument('-n_iter', type=int, help='The times for iteration.')

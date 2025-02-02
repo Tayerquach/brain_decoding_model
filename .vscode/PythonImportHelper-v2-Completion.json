@@ -219,6 +219,14 @@
         "documentation": {}
     },
     {
+        "label": "CHANNEL_NAMES",
+        "importPath": "utils.config",
+        "description": "utils.config",
+        "isExtraImport": true,
+        "detail": "utils.config",
+        "documentation": {}
+    },
+    {
         "label": "INTERVALS",
         "importPath": "utils.config",
         "description": "utils.config",
@@ -395,6 +403,15 @@
         "documentation": {}
     },
     {
+        "label": "argparse",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "argparse",
+        "description": "argparse",
+        "detail": "argparse",
+        "documentation": {}
+    },
+    {
         "label": "Decimal",
         "importPath": "decimal",
         "description": "decimal",
@@ -480,7 +497,7 @@
         "documentation": {}
     },
     {
-        "label": "prepare_data_word_class",
+        "label": "prepare_data_cloze",
         "importPath": "utils.analysis_helpers",
         "description": "utils.analysis_helpers",
         "isExtraImport": true,
@@ -560,15 +577,6 @@
         "documentation": {}
     },
     {
-        "label": "argparse",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "argparse",
-        "description": "argparse",
-        "detail": "argparse",
-        "documentation": {}
-    },
-    {
         "label": "plot_decoding_acc_tbyt",
         "importPath": "utils.plot_helpers",
         "description": "utils.plot_helpers",
@@ -577,7 +585,23 @@
         "documentation": {}
     },
     {
+        "label": "str2bool",
+        "importPath": "utils.plot_helpers",
+        "description": "utils.plot_helpers",
+        "isExtraImport": true,
+        "detail": "utils.plot_helpers",
+        "documentation": {}
+    },
+    {
         "label": "plot_erp_2cons_results",
+        "importPath": "utils.plot_helpers",
+        "description": "utils.plot_helpers",
+        "isExtraImport": true,
+        "detail": "utils.plot_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "str2bool",
         "importPath": "utils.plot_helpers",
         "description": "utils.plot_helpers",
         "isExtraImport": true,
@@ -614,14 +638,6 @@
         "description": "utils.techniques",
         "isExtraImport": true,
         "detail": "utils.techniques",
-        "documentation": {}
-    },
-    {
-        "label": "get_channel_name_ids",
-        "importPath": "utils.eeg_helpers",
-        "description": "utils.eeg_helpers",
-        "isExtraImport": true,
-        "detail": "utils.eeg_helpers",
         "documentation": {}
     },
     {
@@ -811,7 +827,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "FUNCTION_TYPES = ['PRON','AUX','DET','ADP']\nHIGH_CLOZE = ['high']\nLOW_CLOZE = ['low']\nCHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],",
+        "peekOfCode": "FUNCTION_TYPES = ['PRON','AUX','DET','ADP']\nHIGH_CLOZE = ['high']\nLOW_CLOZE = ['low']\nCHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -820,7 +836,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "HIGH_CLOZE = ['high']\nLOW_CLOZE = ['low']\nCHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],",
+        "peekOfCode": "HIGH_CLOZE = ['high']\nLOW_CLOZE = ['low']\nCHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -829,7 +845,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "LOW_CLOZE = ['low']\nCHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],",
+        "peekOfCode": "LOW_CLOZE = ['low']\nCHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -838,7 +854,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "CHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],\n    \"VERB_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],",
+        "peekOfCode": "CHANNEL_NAMES = ['Fp1', 'Fp2', 'F7', 'F3', 'Fz', 'F4', 'F8', 'FC5', 'T7', 'CP5', 'FC6', 'T8', 'CP6', 'FT9', 'FT10', 'FC1', 'FC2', \n'C3', 'Cz', 'C4', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'P8', 'O1', 'Oz', 'O2', 'TP9', 'TP10']\nLEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n    \"VERB_selected_chans\": ['T8', 'CP6', 'FT9', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -847,7 +863,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "LEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],\n    \"VERB_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n    \"DET_selected_chans\": ['FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'FT10', 'FC2', 'C4', 'CP2', 'Fp2', 'F4', 'F8'],\n    \"PRON_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9', 'Fz', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],",
+        "peekOfCode": "LEFT_HEMISPHERE = ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9']\nRIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n    \"VERB_selected_chans\": ['T8', 'CP6', 'FT9', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n}",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -856,7 +872,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "RIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],\n    \"VERB_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n    \"DET_selected_chans\": ['FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'FT10', 'FC2', 'C4', 'CP2', 'Fp2', 'F4', 'F8'],\n    \"PRON_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9', 'Fz', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n}",
+        "peekOfCode": "RIGHT_HEMISPHERE = ['Fp2', 'F4', 'F8', 'FC6', 'T8', 'CP6', 'FT10', 'FC2', 'C4', 'CP2', 'P4', 'P8', 'O2', 'TP10']\nMIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n    \"VERB_selected_chans\": ['T8', 'CP6', 'FT9', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n}",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -865,7 +881,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "MIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],\n    \"VERB_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n    \"DET_selected_chans\": ['FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'FT10', 'FC2', 'C4', 'CP2', 'Fp2', 'F4', 'F8'],\n    \"PRON_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9', 'Fz', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n}",
+        "peekOfCode": "MIDLINES = ['Fz', 'Cz', 'Pz', 'Oz']\nbest_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n    \"VERB_selected_chans\": ['T8', 'CP6', 'FT9', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n}",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -874,7 +890,7 @@
         "kind": 5,
         "importPath": "utils.config",
         "description": "utils.config",
-        "peekOfCode": "best_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fz', 'T8', 'CP6'],\n    \"function_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'Fp2', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'Cz', 'Pz', 'Oz', 'Fz', 'C4', 'CP2', 'P4'],\n    \"VERB_selected_chans\": ['P3', 'P7', 'CP1', 'O1', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n    \"DET_selected_chans\": ['FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'Cz', 'Pz', 'FT10', 'FC2', 'C4', 'CP2', 'Fp2', 'F4', 'F8'],\n    \"PRON_selected_chans\": ['Fp1', 'F7', 'F3', 'FC5', 'T7', 'CP5', 'FT9', 'FC1', 'C3', 'P3', 'P7', 'CP1', 'O1', 'TP9', 'Fz', 'Cz', 'Pz', 'Oz', 'T8', 'CP6'],\n}",
+        "peekOfCode": "best_clusters = {\n    \"content_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"function_selected_chans\": ['FT10', 'FC1', 'FC2', 'C3', 'Cz', 'C4', 'Fp2', 'F7', 'F3', 'Fz', 'F4'],\n    \"NOUN_selected_chans\": ['P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n    \"VERB_selected_chans\": ['T8', 'CP6', 'FT9', 'P3', 'P7', 'CP1', 'CP2', 'Pz', 'P4', 'F7', 'F3', 'Fz', 'F4'],\n}",
         "detail": "utils.config",
         "documentation": {}
     },
@@ -903,6 +919,15 @@
         "description": "utils.eeg_helpers",
         "peekOfCode": "def get_channel_name_ids(name):\n    # Define mappings for regions\n    region_map = {\n        \"all\": CHANNEL_NAMES,\n        \"left_hemisphere\": LEFT_HEMISPHERE,\n        \"right_hemisphere\": RIGHT_HEMISPHERE,\n        \"midlines\": MIDLINES,\n    }\n    # Handle special cases\n    if name == \"all\":",
         "detail": "utils.eeg_helpers",
+        "documentation": {}
+    },
+    {
+        "label": "str2bool",
+        "kind": 2,
+        "importPath": "utils.plot_helpers",
+        "description": "utils.plot_helpers",
+        "peekOfCode": "def str2bool(v):\n    if isinstance(v, bool):\n        return v\n    if v.lower() in ('yes', 'true', 't', '1'):\n        return True\n    elif v.lower() in ('no', 'false', 'f', '0'):\n        return False\n    else:\n        raise argparse.ArgumentTypeError('Boolean value expected.')\n### Define a function to visualize joint ERPs for two conditions together - plot_erp_2cons_results()",
+        "detail": "utils.plot_helpers",
         "documentation": {}
     },
     {
@@ -973,7 +998,7 @@
         "kind": 2,
         "importPath": "extract_optimal_channels",
         "description": "extract_optimal_channels",
-        "peekOfCode": "def create_data(word_type, name_region):\n    ## Region\n    indices_region, region_channel_names =  get_channel_name_ids(name_region)\n    EEG_data_class, labels_class = prepare_data_word_class(word_type)\n    EEG_data_region = EEG_data_class[:,:, indices_region, :] * 1e6\n    # EEG_high_cloze will contain columns of data where the corresponding label is 0\n    EEG_high_cloze = EEG_data_region[:, labels_class[0] == 0, :, :]\n    EEG_high_cloze_400 = EEG_high_cloze[:, :, :, 400:]\n    # EEG_low_cloze will contain columns of data where the corresponding label is 1\n    EEG_low_cloze = EEG_data_region[:, labels_class[0] == 1, :, :]",
+        "peekOfCode": "def create_data(word_type):\n    ## Region\n    # indices_region, region_channel_names =  get_channel_name_ids(name_region)\n    EEG_data_class, labels_class = prepare_data_word_class(word_type)\n    EEG_data_region = EEG_data_class * 1e6\n    # EEG_high_cloze will contain columns of data where the corresponding label is 0\n    EEG_high_cloze = EEG_data_region[:, labels_class[0] == 0, :, :]\n    EEG_high_cloze_400 = EEG_high_cloze[:, :, :, 400:]\n    # EEG_low_cloze will contain columns of data where the corresponding label is 1\n    EEG_low_cloze = EEG_data_region[:, labels_class[0] == 1, :, :]",
         "detail": "extract_optimal_channels",
         "documentation": {}
     },
@@ -982,7 +1007,7 @@
         "kind": 2,
         "importPath": "extract_optimal_channels",
         "description": "extract_optimal_channels",
-        "peekOfCode": "def run_permutation_test(ERP1, ERP2, name_region):\n    n_subjects, n_sensors, n_timepoints = ERP1.shape\n    indices_region, region_channel_names =  get_channel_name_ids(name_region)\n    # Calculate the difference between the two conditions\n    data_diff = ERP1 - ERP2\n    # Reshape the data_diff for cluster-based permutation testing\n    data_diff = data_diff.reshape(n_subjects, n_sensors * n_timepoints)\n    # Perform the cluster-based permutation test\n    T_obs, clusters, cluster_p_values, H0 = permutation_cluster_1samp_test(\n        data_diff, n_permutations=10000, threshold=0.05, tail=0, n_jobs=1, seed=42, ",
+        "peekOfCode": "def run_permutation_test(ERP1, ERP2):\n    n_subjects, n_sensors, n_timepoints = ERP1.shape\n    # indices_region, region_channel_names =  get_channel_name_ids(name_region)\n    # Calculate the difference between the two conditions\n    data_diff = ERP1 - ERP2\n    # Reshape the data_diff for cluster-based permutation testing\n    data_diff = data_diff.reshape(n_subjects, n_sensors * n_timepoints)\n    # Perform the cluster-based permutation test\n    T_obs, clusters, cluster_p_values, H0 = permutation_cluster_1samp_test(\n        data_diff, n_permutations=10000, threshold=0.05, tail=0, n_jobs=1, seed=42, ",
         "detail": "extract_optimal_channels",
         "documentation": {}
     },
@@ -1000,7 +1025,7 @@
         "kind": 2,
         "importPath": "run_cohen_dz",
         "description": "run_cohen_dz",
-        "peekOfCode": "def prepare_data_diff(category):\n    '''\n        Import data\n    '''\n    EEG_data, labels = prepare_data_word_class(category)   \n    # Regions\n    best_channels = best_clusters[f'{category}_selected_chans']\n    best_indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in(best_channels)]\n    # EEG_data\n    EEG_data_region = EEG_data[:,:, best_indices, :] * 1e6",
+        "peekOfCode": "def prepare_data_diff(category, optimal=False):\n    '''\n        Import data\n    '''\n    EEG_data, labels = prepare_data_word_class(category)\n    if optimal:   \n        best_channels = best_clusters[f'{category}_selected_chans']\n        best_indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in(best_channels)]\n    else:\n        best_indices = [i for i, value in enumerate(CHANNEL_NAMES)]",
         "detail": "run_cohen_dz",
         "documentation": {}
     },
@@ -1009,7 +1034,7 @@
         "kind": 2,
         "importPath": "run_cohen_dz",
         "description": "run_cohen_dz",
-        "peekOfCode": "def prepare_data_for_cohendz(category, time_window):\n    '''\n        Import data\n    '''\n    ERP_diff_category_region_window = prepare_data_diff(category)        \n    print(\"ERP_diff_category_region_window shape: \", ERP_diff_category_region_window.shape)\n    # Content accuracies\n    with open(f'decoding_data/word_class/{category}/word_class_all_accuracies.pkl', 'rb') as f:\n        content_accuracies = pickle.load(f)\n    # N400 window - Content words",
+        "peekOfCode": "def prepare_data_for_cohendz(category, time_window, optimal):\n    '''\n        Import data\n    '''\n    ERP_diff_category_region_window = prepare_data_diff(category, optimal)        \n    print(\"ERP_diff_category_region_window shape: \", ERP_diff_category_region_window.shape)\n    # Content accuracies\n    with open(f'decoding_data/word_class/{category}/word_class_all_accuracies.pkl', 'rb') as f:\n        content_accuracies = pickle.load(f)\n    # N400 window - Content words",
         "detail": "run_cohen_dz",
         "documentation": {}
     },

@@ -4,7 +4,11 @@
 </p>
 
 # <h1 align="center" id="heading"> Decoding EEG Signals to Explore Next-Word Predictability in the Human Brain</h1>
-## [![Python][Python.py]][Python-url] [![Machine Learning][Machine-Learning.py]][Machine-Learning-url][![Decoding Model][Decoding-Model.py]][Decoding-Model-url][![Brain Signal][Brain-Signal.py]][Brain-Signal-url]
+## 
+[![Python][Python.py]][Python-url] 
+[![Machine Learning][Machine-Learning.py]][Machine-Learning-url]
+[![Decoding Model][Decoding-Model.py]][Decoding-Model-url]
+[![Brain Signal][Brain-Signal.py]][Brain-Signal-url]
 
 * Decoding EEG Signals to Explore Next-Word Predictability in the Human Brain.
 
@@ -192,6 +196,10 @@ For example,
 ```console
 python run_cohen_dz.py -category=NOUN -start_window=300 -end_window=500 
 ```
+
+## Contact 
+- Boi Mai Quach (Dublin City University, quachmaiboi@gmail.com) 
+
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
 [Python-url]: https://www.python.org/

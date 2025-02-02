@@ -55,8 +55,9 @@ def prepare_data(group, technique, time_window):
                 EEG_data, labels = prepare_data_word_class(category)   
                 # Regions
                 indices, region_channels =  get_channel_name_ids(name_region)
-                best_channels = best_clusters[f'{category}_selected_chans']
-                best_indices = [i for i, value in enumerate(region_channels) if value in(best_channels)]
+                # best_channels = best_clusters[f'{category}_selected_chans']
+                # best_indices = [i for i, value in enumerate(region_channels) if value in(best_channels)]
+                best_indices = indices.copy()
 
                 # EEG_data
                 EEG_data_region = EEG_data[:,:, best_indices, :] * 1e6

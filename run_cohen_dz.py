@@ -6,6 +6,7 @@ from utils.analysis_helpers import prepare_data_word_class
 from scipy.stats import bootstrap
 import matplotlib.pyplot as plt
 from utils.config import CHANNEL_NAMES, INTERVALS, T_MIN, best_clusters
+from utils.plot_helpers import str2bool
 
 def get_time_window(start_idx, end_idx):
     """
@@ -31,15 +32,17 @@ def get_time_window(start_idx, end_idx):
 
     return [adjusted_start, adjusted_end]
 
-def prepare_data_diff(category):
+def prepare_data_diff(category, optimal=False):
     '''
         Import data
     '''
 
-    EEG_data, labels = prepare_data_word_class(category)   
-    # Regions
-    best_channels = best_clusters[f'{category}_selected_chans']
-    best_indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in(best_channels)]
+    EEG_data, labels = prepare_data_word_class(category)
+    if optimal:   
+        best_channels = best_clusters[f'{category}_selected_chans']
+        best_indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in(best_channels)]
+    else:
+        best_indices = [i for i, value in enumerate(CHANNEL_NAMES)]
 
     # EEG_data
     EEG_data_region = EEG_data[:,:, best_indices, :] * 1e6
@@ -55,12 +58,12 @@ def prepare_data_diff(category):
 
     return ERP_diff_category_region_window
 
-def prepare_data_for_cohendz(category, time_window):
+def prepare_data_for_cohendz(category, time_window, optimal):
     '''
         Import data
     '''
 
-    ERP_diff_category_region_window = prepare_data_diff(category)        
+    ERP_diff_category_region_window = prepare_data_diff(category, optimal)        
     print("ERP_diff_category_region_window shape: ", ERP_diff_category_region_window.shape)
     
 
@@ -191,7 +194,7 @@ if __name__ == "__main__":
 
     # Add parameters to the parser
     parser.add_argument('-category', type=str, help='Specify the word group')
-    # parser.add_argument('-region', type=str, help='Specify the brain region')
+    parser.add_argument('-optimal', type=str2bool, nargs='?', const=True, default=False, help='Get optimal electrodes for ERP analysis')
     parser.add_argument('-start_window', type=int, help='Specify the beginning of time window')
     parser.add_argument('-end_window', type=int, help='Specify the end of time window')
 
@@ -200,13 +203,13 @@ if __name__ == "__main__":
 
     # Access the parameter values
     word_type = args.category
-    # name_region = args.region
+    optimal = args.optimal
     start_window = args.start_window 
     end_window = args.end_window
 
     # Load data
     time_window = get_time_window(start_window, end_window)
-    ERP_diff_category_region_window, content_accuracies_window = prepare_data_for_cohendz(word_type, time_window)
+    ERP_diff_category_region_window, content_accuracies_window = prepare_data_for_cohendz(word_type, time_window, optimal)
     
     # Cohen's dz calculation
     bootstrap_mean_dz_group_erp, sem_dz_group_erp, bootstrap_mean_dz_group_svm, sem_dz_group_svm = calculate_dz_for_viz(ERP_diff_category_region_window, content_accuracies_window)
@@ -214,8 +217,8 @@ if __name__ == "__main__":
     # Visualise Cohen's dz
     fig, ax = plt.subplots(figsize=(6, 8))
     viz_cohen_dz(bootstrap_mean_dz_group_erp, sem_dz_group_erp, bootstrap_mean_dz_group_svm, sem_dz_group_svm, ax)
-    fig.savefig(f'photo/{word_type}/cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
+    fig.savefig(f'photo/{word_type}/{optimal}_cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
 
     print("Running Successfully!")
-    print(f"Result is saved in photo/{word_type}/cohen_dz_analysis.png")
+    print(f"Result is saved in photo/{word_type}/{optimal}_cohen_dz_analysis.png")
     

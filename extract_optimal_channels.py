@@ -4,14 +4,15 @@ import argparse
 import numpy as np
 
 from utils.analysis_helpers import prepare_data_word_class
-from utils.eeg_helpers import get_channel_name_ids
+# from utils.eeg_helpers import get_channel_name_ids
 from mne.stats import permutation_cluster_1samp_test, fdr_correction
+from utils.config import CHANNEL_NAMES
 
-def create_data(word_type, name_region):
+def create_data(word_type):
     ## Region
-    indices_region, region_channel_names =  get_channel_name_ids(name_region)
+    # indices_region, region_channel_names =  get_channel_name_ids(name_region)
     EEG_data_class, labels_class = prepare_data_word_class(word_type)
-    EEG_data_region = EEG_data_class[:,:, indices_region, :] * 1e6
+    EEG_data_region = EEG_data_class * 1e6
     
     # EEG_high_cloze will contain columns of data where the corresponding label is 0
     EEG_high_cloze = EEG_data_region[:, labels_class[0] == 0, :, :]
@@ -31,9 +32,9 @@ def create_data(word_type, name_region):
 
     return ERP1, ERP2
 
-def run_permutation_test(ERP1, ERP2, name_region):
+def run_permutation_test(ERP1, ERP2):
     n_subjects, n_sensors, n_timepoints = ERP1.shape
-    indices_region, region_channel_names =  get_channel_name_ids(name_region)
+    # indices_region, region_channel_names =  get_channel_name_ids(name_region)
     # Calculate the difference between the two conditions
     data_diff = ERP1 - ERP2
 
@@ -64,12 +65,12 @@ def run_permutation_test(ERP1, ERP2, name_region):
             for flat_idx in range(start_idx, stop_idx):
                 sensor_index = flat_idx // n_timepoints
                 timepoint = flat_idx % n_timepoints
-                channel_name = region_channel_names[sensor_index]
+                channel_name = CHANNEL_NAMES[sensor_index]
                 if channel_name not in significant_channels:
                     significant_channels.append(channel_name)
 
     # Print or return the significant channels
-    print(name_region.capitalize())
+    # print(name_region.capitalize())
     print("Channels in significant clusters using p_vals:", significant_channels)
     
     significant_channels_x = []
@@ -80,12 +81,12 @@ def run_permutation_test(ERP1, ERP2, name_region):
             for flat_idx in range(start_idx, stop_idx):
                 sensor_index = flat_idx // n_timepoints
                 timepoint = flat_idx % n_timepoints
-                channel_name = region_channel_names[sensor_index]
+                channel_name = CHANNEL_NAMES[sensor_index]
                 if channel_name not in significant_channels_x:
                     significant_channels_x.append(channel_name)
 
     # Print or return the significant channels
-    print(name_region.capitalize())
+    # print(name_region.capitalize())
     print("Channels in significant clusters using FDR:", significant_channels_x)
 
 if __name__ == '__main__':
@@ -93,17 +94,17 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Extract the optimal channels in the 300-500ms window')
     # Add parameters to the parser
     parser.add_argument('-category', type=str, help='Specify the word type e.g, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET')
-    parser.add_argument('-region', type=str, help='Specify the brain region')
+    # parser.add_argument('-region', type=str, help='Specify the brain region')
 
     # Parse the command-line arguments
     args = parser.parse_args()
 
     # Access the parameter values
     word_type = args.category
-    name_region = args.region
+    # name_region = args.region
 
-    ERP1, ERP2 = create_data(word_type, name_region)
+    ERP1, ERP2 = create_data(word_type)
 
-    run_permutation_test(ERP1, ERP2, name_region)
+    run_permutation_test(ERP1, ERP2)
 
 
