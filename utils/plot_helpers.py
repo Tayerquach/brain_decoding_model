@@ -73,16 +73,16 @@ def plot_erp_2cons_results(p_vals, avg1, err1, avg2, err2, times, con_labels=['C
     # Adjust the ylabel position
     ax = plt.gca()
     ax.yaxis.set_label_coords(0.1, 0.75)
-    # # plt.legend(loc='upper right', bbox_to_anchor=(1.05, 1.5), fontsize=14)
-    # # Add legend manually with custom positions
-    # legend1 = plt.Line2D([0], [0], color='red', label=con_labels[0])
-    # legend2 = plt.Line2D([0], [0], color='green', label=con_labels[1])
-    # if cluster_permutation:
-    #     legend3 = mlines.Line2D([0], [0], color='lightgray', linewidth=8, label=f'cluster p-value < {p_threshold}')
-    # else:
-    #     legend3 = mlines.Line2D([0], [0], color='lightgray', linewidth=8, label=f'p-value < {p_threshold}')
+    # plt.legend(loc='upper right', bbox_to_anchor=(1.05, 1.5), fontsize=14)
+    # Add legend manually with custom positions
+    legend1 = plt.Line2D([0], [0], color='red', label=con_labels[0])
+    legend2 = plt.Line2D([0], [0], color='green', label=con_labels[1])
+    if cluster_permutation:
+        legend3 = mlines.Line2D([0], [0], color='lightgray', linewidth=8, label=f'cluster p-value < {p_threshold}')
+    else:
+        legend3 = mlines.Line2D([0], [0], color='lightgray', linewidth=8, label=f'p-value < {p_threshold}')
 
-    # ax.legend(handles=[legend1, legend2, legend3], loc='upper right', bbox_to_anchor=(1.05, 1.25), fontsize=16)
+    ax.legend(handles=[legend1, legend2, legend3], loc='upper right', bbox_to_anchor=(1.05, 1.25), fontsize=16)
 
 """
     Decoding Visualisation
