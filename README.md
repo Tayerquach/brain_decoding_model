@@ -35,6 +35,10 @@ After cloning repository github, going to the DERCo folder and do the steps as f
 ```console 
 conda create --name [name of env] python==[version]
 ```
+For example,
+```console
+conda create --name decoding python==3.10.9
+```
 4. Activate enviroment
 ```console 
 conda activate [name of env]
@@ -46,7 +50,7 @@ pip3 install -r requirements.txt
 ## Dowload the project (git)
 Clone the project
 ```consolde
-git clone https://github.com/Tayerquach/brain_decoding_models.git
+git clone https://github.com/Tayerquach/brain_decoding_model.git
 ```
 
 Project Organization

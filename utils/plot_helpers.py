@@ -65,14 +65,15 @@ def plot_erp_2cons_results(p_vals, avg1, err1, avg2, err2, times, con_labels=['C
 
     plt.plot(times, avg1, alpha=0.9, color='red')
     plt.plot(times, avg2, alpha=0.9, color='green')
-    plt.xticks(fontsize=20)
-    plt.yticks(fontsize=20)
+    plt.xticks(fontsize=24)
+    plt.yticks(fontsize=24)
     plt.ylim(ylim[0], ylim[1])
-    plt.ylabel(r'Amplitude in $\mu$V', fontsize=25, labelpad=labelpad)
+    plt.ylabel(r'Amplitude in ($\mu$V)', fontsize=25, labelpad=labelpad)
     plt.xlabel('Time (ms)', fontsize=25)
     # Adjust the ylabel position
     ax = plt.gca()
-    ax.yaxis.set_label_coords(0.1, 0.75)
+    ax.yaxis.set_label_coords(0.05, 0.78)
+    ax.xaxis.set_label_coords(0.6, 0.2)
     # plt.legend(loc='upper right', bbox_to_anchor=(1.05, 1.5), fontsize=14)
     # Add legend manually with custom positions
     legend1 = plt.Line2D([0], [0], color='red', label=con_labels[0])
@@ -311,19 +312,20 @@ def plot_raincloud_diff(df, group):
 
     # Rainclouds with FacetGrid according to conditions separately (including three regions) TOGETHER
     # Now with the group as hue
-    pal = "Set2"
+    pal = "Set2" #https://seaborn.pydata.org/generated/seaborn.color_palette.html
+    custom_pal = sns.set_palette(sns.color_palette(["#f77189","#3ba3ec"]))
     sigma = .2
     ort = "v"
     dx = "Region"; dy = "Diff_amp"; dhue = "Condition"
-    f, ax = plt.subplots(figsize=(12, 6))
+    f, ax = plt.subplots(figsize=(6, 6))
 
-    ax=pt.RainCloud(x = dx, y = dy, hue=dhue, data = df, palette = pal, bw = sigma, width_viol = .5, point_size = 1, width_box = .2,
+    ax=pt.RainCloud(x = dx, y = dy, hue=dhue, data = df, palette = custom_pal, bw = sigma, width_viol = .5, point_size = 1, width_box = .2,
                     ax = ax, orient = ort , alpha = .65, dodge = True, pointplot = True, move = 0)
     ax.set_ylabel('Absolute Difference amplitude ($\mu$V)', fontsize=20)
     # Hide x-axis labels
     ax.set_xlabel("", fontsize=14)  # Removes the x-axis label
     ax.tick_params(axis='x', labelsize=20)      # Adjust x-axis tick label font size
-    ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    ax.tick_params(axis='y', labelsize=20)      # Adjust y-axis tick label font size
     # Adjust the legend size and position inside the plot
     # Get the handles and labels from the current legend
     handles, labels = ax.get_legend_handles_labels()
@@ -367,7 +369,7 @@ def plot_raincloud_diff(df, group):
         ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
     g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
     plt.savefig(f'{output_folder}/separate_regions_difference_amplitude_distribution.png', dpi=500, bbox_inches='tight')
-
+    print("Image has already saved")
     
 
 def plot_raincloud_decoding(df, group):
@@ -400,19 +402,20 @@ def plot_raincloud_decoding(df, group):
     # Together
     # Rainclouds with FacetGrid according to conditions separately (including three regions) TOGETHER
     # Now with the group as hue
-    pal = "Set2"
+    # pal = "Set2"
+    custom_pal = sns.set_palette(sns.color_palette(["#f77189","#3ba3ec"]))
     sigma = .2
     ort = "v"
     dx = "Region"; dy = "Accuracy"; dhue = "Condition"
-    f, ax = plt.subplots(figsize=(12, 6))
+    f, ax = plt.subplots(figsize=(6, 6))
 
-    ax=pt.RainCloud(x = dx, y = dy, hue=dhue, data = df, palette = pal, bw = sigma, width_viol = .5, point_size = 1, width_box = .2,
+    ax=pt.RainCloud(x = dx, y = dy, hue=dhue, data = df, palette = custom_pal, bw = sigma, width_viol = .5, point_size = 1, width_box = .2,
                     ax = ax, orient = ort , alpha = .65, dodge = True, pointplot = True, move = 0)
     ax.set_ylabel('Decoding Accuracy', fontsize=20)
     # Hide x-axis labels
     ax.set_xlabel("", fontsize=14)  # Removes the x-axis label
     ax.tick_params(axis='x', labelsize=20)      # Adjust x-axis tick label font size
-    ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
+    ax.tick_params(axis='y', labelsize=20)      # Adjust y-axis tick label font size
     # Adjust the legend size and position inside the plot
     # Get the handles and labels from the current legend
     handles, labels = ax.get_legend_handles_labels()
@@ -457,3 +460,4 @@ def plot_raincloud_decoding(df, group):
         ax.tick_params(axis='y', labelsize=14)      # Adjust y-axis tick label font size
     g.fig.suptitle("N400 (300 - 500 ms)",  fontsize=22)
     plt.savefig(f'{output_folder}/regions_decoding_accuracies_distribution.png', dpi=500, bbox_inches='tight')
+    print("Image has already saved")

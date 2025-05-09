@@ -6,13 +6,13 @@ from utils.plot_helpers import plot_decoding_acc_tbyt, str2bool
 from utils.techniques import classification_decoding_kfold
 from utils.eeg_helpers import get_channel_name_ids
 from utils.analysis_helpers import prepare_data_word_class
-from utils.config import INTERVALS, T_MAX, T_MIN
+from utils.config import INTERVALS, T_MAX, T_MIN, best_clusters, CHANNEL_NAMES
 import matplotlib.pyplot as plt
 
 
 if __name__ == '__main__': 
     # Create an argument parser
-    parser = argparse.ArgumentParser(description='Word class analysis')
+    parser = argparse.ArgumentParser(description='Word class analysis - Decoding')
 
     # Add parameters to the parser
     parser.add_argument('-category', type=str, help='Specify the word type e.g, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET')
@@ -33,29 +33,38 @@ if __name__ == '__main__':
     clusterp = args.clusterp
     n_iter = args.n_iter
 
-    if name_region not in ['left_hemisphere', 'right_hemisphere', 'midlines', 'all']:
+    if name_region not in ['left_hemisphere', 'right_hemisphere', 'midlines', 'all', 'best']:
         raise ValueError("Invalid brain region. Please specify a valid brain region")
     
     if word_type not in ['NOUN', 'VERB', 'ADJ', 'ADV', 'PRON', 'AUX', 'ADP', 'DET', 'content', 'function']:
         raise ValueError("Invalid word type. Please specify a valid word category")
     
     EEG_data, labels = prepare_data_word_class(word_type)
-    indices, region_channels =  get_channel_name_ids(name_region)
-    EEG_data_region = EEG_data[:,:, indices, :] * 1e6
 
-    # # Decoding EEG data and validating results using K-fold cross validation
-    # accuracies = classification_decoding_kfold(EEG_data_region, labels, n_class=2, time_win=1, time_step=1, n_folds=5, n_repeats=100, normalization=True)
+    if name_region == 'best':
+        region_channels = best_clusters[f'{word_type}_selected_chans']
+        indices = [i for i, value in enumerate(CHANNEL_NAMES) if value in(region_channels)]
+    else:
+        indices, region_channels =  get_channel_name_ids(name_region)
+    EEG_data_region = EEG_data[:,:, indices, :] * 1e6
 
     # Save the arrays to a pickle file
     output_folder = f'decoding_data/word_class/{word_type}'
-    # # Check if the folder exists, if not create it
-    # if not os.path.exists(output_folder):
-    #     os.makedirs(output_folder)
-    # with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'wb') as file:
-    #     pickle.dump(accuracies, file)
+    # Check if the folder exists, if not create it
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+    file_path = output_folder + f'/word_class_{name_region}_accuracies.pkl'
+    # Check if the file does not exist
+    if not os.path.exists(file_path):
+        # Decoding EEG data and validating results using K-fold cross validation
+        accuracies = classification_decoding_kfold(EEG_data_region, labels, n_class=2, time_win=1, time_step=1, n_folds=5, n_repeats=100, normalization=True)
+        # Save accuracy
+        with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'wb') as file:
+            pickle.dump(accuracies, file)
 
-    with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'rb') as file:
-        accuracies = pickle.load(file)
+    else:
+        with open(output_folder + f'/word_class_{name_region}_accuracies.pkl', 'rb') as file:
+            accuracies = pickle.load(file)
 
 
     # Create the region name
