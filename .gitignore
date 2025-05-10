@@ -3,7 +3,7 @@ data/EEG_data/raw
 !data/EEG_data/.gitkeep
 results
 utils/__pycache__
-photo/*
+photo/*/*/
 univariate_data
 decoding_data
 run_cloze_analysis.py
