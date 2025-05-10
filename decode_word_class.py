@@ -92,7 +92,7 @@ if __name__ == '__main__':
                            cluster_permutation=cluster_permutation, clusterp=clusterp, iter=n_iter,
                            stats_time=[T_MIN, T_MAX], title=None, color='g', xlim=[-0.1, 0.5], ylim=[0.4, 0.7], avgshow=True)
     plt.show()
-    fig.savefig(output_result_folder + f'/decoding_eeg_in_{name_region}_for_{word_type}.jpg')
+    fig.savefig(output_result_folder + f'/{name_region}_decoding_eeg_for_{word_type}.jpg')
 
     print(f"\nData was saved in {output_data_folder}")
     print(f"\nResults were saved in {output_result_folder}")

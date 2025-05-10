@@ -131,6 +131,14 @@ For example,
 python extract_optimal_channels.py -category=content
 ```
 
+**Output**
+| Group | Optimal Electrode Cluster |
+| :-------- | :------------------------------------------------------------------------------------------------ |
+|  **Content**  | P3, P7, CP1, CP2, Pz, P4, Fp2, F7, F3, Fz, F4|
+|  **Function**  | FT10, FC1, FC2, C3, Cz, C4, Fp2, F7, F3, Fz, F4|
+|  **Noun**  | P3, P7, CP1, CP2, Pz, P4, F7, F3, Fz, F4|
+|  **Verb**  | T8, CP6, FT9, P3, P7, CP1, CP2, Pz, P4, F7, F3, Fz, F4|
+
 ## Reproduce Results
 **Note:** Looking at the folder `photo` to get all results.
 
@@ -150,8 +158,14 @@ python run_class_analysis.py -category=[word-type] -region=[region-name] -permut
 For example,
 
 ```console
-python run_class_analysis.py -category=function -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
+python run_class_analysis.py -category=content -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
+
+**Output**
+<p align = "center" draggable=”false” ><img src="photo/content/univariate_analysis/best/best_ERPs_content.png" 
+     width="auto"
+     height="auto"/>
+</p>
 
 ### Decoding EEG signals
 ```console
@@ -161,8 +175,13 @@ python decode_word_class.py -category=[word-type] -region=[name-region] -permuta
 For example,
 
 ```console
-python decode_word_class.py -category=function -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
+python decode_word_class.py -category=content -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
+**Output**
+<p align = "center" draggable=”false” ><img src="photo/content/classification_decoding/best/best_decoding_eeg_for_content.jpg" 
+     width="auto"
+     height="auto"/>
+</p>
 
 ### Rain Cloud Visualisation
 1. Raincloud plots displaying the absolute difference in a specific time window (e.g., N400 amplitude).
@@ -180,11 +199,23 @@ For example,
 ```console
 python run_raincloud.py -category=lexical_class -technique=univariate -start_window=300 -end_window=500  
 ```
+**Output**
+<p align = "center" draggable=”false” ><img src="photo/raincloud/lexical_class/together_regions_difference_amplitude_distribution.png" 
+     width="auto"
+     height="auto"/>
+</p>
+
 For example,
 
 ```console
 python run_raincloud.py -category=lexical_class -technique=decoding -start_window=300 -end_window=500  
 ```
+
+**Output**
+<p align = "center" draggable=”false” ><img src="photo/raincloud/lexical_class/together_regions_decoding_accuracy_distribution.png" 
+     width="auto"
+     height="auto"/>
+</p>
 
 ### Cohen's dz Analysis
 
@@ -192,12 +223,29 @@ python run_raincloud.py -category=lexical_class -technique=decoding -start_windo
 python run_cohen_dz.py -category=[word-type] -optimal=[True or False] -start_window=[start] -end_window=[end] 
 ```
 
+For example,
+```console
+python run_cohen_dz.py -category=NOUN -optimal=False -start_window=300 -end_window=500 
+```
+
+**Output**
+<p align = "center" draggable=”false” ><img src="photo/NOUN/cohen_dz_analysis" 
+     width="auto"
+     height="auto"/>
+</p>
+
 Note that the `optimal` parameter will decide whether the optimal electrodes for ERP analysis will be averaged or not. If not, the data will be averaged across all electrodes.
 
 For example,
 ```console
 python run_cohen_dz.py -category=NOUN -optimal=True -start_window=300 -end_window=500 
 ```
+
+**Output**
+<p align = "center" draggable=”false” ><img src="photo/NOUN/optimal_cohen_dz_analysis" 
+     width="auto"
+     height="auto"/>
+</p>
 
 ## Contact 
 - Boi Mai Quach (Dublin City University, quachmaiboi@gmail.com) 

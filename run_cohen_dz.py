@@ -217,8 +217,12 @@ if __name__ == "__main__":
     # Visualise Cohen's dz
     fig, ax = plt.subplots(figsize=(6, 8))
     viz_cohen_dz(bootstrap_mean_dz_group_erp, sem_dz_group_erp, bootstrap_mean_dz_group_svm, sem_dz_group_svm, ax)
-    fig.savefig(f'photo/{word_type}/{optimal}_cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
-
     print("Running Successfully!")
-    print(f"Result is saved in photo/{word_type}/{optimal}_cohen_dz_analysis.png")
+    if optimal:
+        fig.savefig(f'photo/{word_type}/optimal_cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
+        print(f"Result is saved in photo/{word_type}/optimal_cohen_dz_analysis.png")
+    else:
+        fig.savefig(f'photo/{word_type}/cohen_dz_analysis.png', dpi=500, bbox_inches='tight')
+        print(f"Result is saved in photo/{word_type}/cohen_dz_analysis.png")
+
     
