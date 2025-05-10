@@ -69,10 +69,10 @@ def convert_data_to_dict():
     for subject_id in tqdm(subject_ids):
         df = pd.DataFrame()
         metadata = pd.DataFrame()
-        for topic_id in tqdm(range(n_topics)):
+        for topic_id in range(n_topics):
             article_path = 'article_' + str(topic_id)
             epochs_path = subject_path / subject_id / article_path / file_name
-            epochs = mne.read_epochs(epochs_path)
+            epochs = mne.read_epochs(epochs_path, verbose='ERROR')
             metadata_temp = epochs.metadata # Access metadata
             # Add a pos column
             df_pos = add_part_of_speech(topic_id) 
@@ -228,8 +228,9 @@ def prepare_data(subjects_dict, subject_ids, word_type):
             min_low_subject = subject_ids[i]
 
     # Print the results
-    print(f"Subject with the least high value: {min_high_subject} (high: {min_high_value})")
+    print(f"\nSubject with the least high value: {min_high_subject} (high: {min_high_value})")
     print(f"Subject with the least low value: {min_low_subject} (low: {min_low_value})")
+    print("\nPreprocessing ... \n")
     
     # Create baseline data
     metadata_content_high = subjects_dict[min_high_subject]['metadata']
@@ -325,5 +326,6 @@ if __name__ == "__main__":
         with open(output_folder / 'EEG_data.pkl', 'wb') as f:
             pickle.dump(EEG_data, f)
 
-        print("Data saved successfully!")
+        print(f"\nData {word_type} saved successfully!")
+        print(f"Data was saved in {output_folder}\n")
 

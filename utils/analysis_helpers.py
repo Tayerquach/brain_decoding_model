@@ -16,7 +16,7 @@ def prepare_data_word_class(word_type):
     with open(f'results/{word_type}/EEG_data.pkl', 'rb') as f:
         EEG_data = pickle.load(f)
 
-    print("Shape of EEG original data: ", EEG_data.shape)
+    print(f"Shape of EEG original data: {EEG_data.shape} \n")
 
     return EEG_data, labels
 

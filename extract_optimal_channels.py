@@ -12,14 +12,14 @@ def create_data(word_type):
     ## Region
     # indices_region, region_channel_names =  get_channel_name_ids(name_region)
     EEG_data_class, labels_class = prepare_data_word_class(word_type)
-    EEG_data_region = EEG_data_class * 1e6
+    EEG_data = EEG_data_class * 1e6
     
     # EEG_high_cloze will contain columns of data where the corresponding label is 0
-    EEG_high_cloze = EEG_data_region[:, labels_class[0] == 0, :, :]
+    EEG_high_cloze = EEG_data[:, labels_class[0] == 0, :, :]
     EEG_high_cloze_400 = EEG_high_cloze[:, :, :, 400:]
 
     # EEG_low_cloze will contain columns of data where the corresponding label is 1
-    EEG_low_cloze = EEG_data_region[:, labels_class[0] == 1, :, :]
+    EEG_low_cloze = EEG_data[:, labels_class[0] == 1, :, :]
     EEG_low_cloze_400 = EEG_low_cloze[:, :, :, 400:]
 
     # Generate event-related potential events
@@ -93,7 +93,7 @@ if __name__ == '__main__':
     # Create an argument parser
     parser = argparse.ArgumentParser(description='Extract the optimal channels in the 300-500ms window')
     # Add parameters to the parser
-    parser.add_argument('-category', type=str, help='Specify the word type e.g, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET')
+    parser.add_argument('-category', type=str, help='Specify the word type e.g, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET, content, function')
     # parser.add_argument('-region', type=str, help='Specify the brain region')
 
     # Parse the command-line arguments
@@ -102,6 +102,16 @@ if __name__ == '__main__':
     # Access the parameter values
     word_type = args.category
     # name_region = args.region
+        # Check for missing arguments
+    missing_args = [arg for arg in ['category'] if getattr(args, arg) is None]
+
+    if missing_args:
+        missing_list = ', '.join(f'--{arg}' for arg in missing_args)
+        raise ValueError(f"Missing required argument(s): {missing_list}")
+
+    allowed_category =  ['NOUN', 'VERB', 'ADJ', 'ADV', 'PRON', 'AUX', 'ADP', 'DET', 'content', 'function']
+    if word_type not in ['NOUN', 'VERB', 'ADJ', 'ADV', 'PRON', 'AUX', 'ADP', 'DET', 'content', 'function']:
+        raise ValueError(f"Invalid argument: '{word_type}'. Expected one of: {allowed_category}")
 
     ERP1, ERP2 = create_data(word_type)
 

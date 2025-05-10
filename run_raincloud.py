@@ -43,6 +43,9 @@ def prepare_data(group, region_type, technique, time_window):
     regions = ['left_hemisphere', 'midlines', 'right_hemisphere']
     word_type = type_mapping[group]
     values = []
+    conditions = []
+    n_subs = 0
+    n_timepoints = 0
 
     if technique == 'univariate':
         if region_type == 'best':
@@ -150,7 +153,7 @@ if __name__ == '__main__':
 
     # Add parameters to the parser
     parser.add_argument('-category', type=str, help='Specify the word group')
-    parser.add_argument('-region_type', type=str, help='Specify the regions (e.g., separate (including left, midline, right hemisphere), best)')
+    parser.add_argument('-region_type', default='best', type=str, help='Specify the regions (e.g., separate (including left, midline, right hemisphere), best)')
     parser.add_argument('-technique', type=str, help='Specify the technique (e.g., univariate, decoding)')
     parser.add_argument('-start_window', type=int, help='Specify the beginning of time window')
     parser.add_argument('-end_window', type=int, help='Specify the end of time window')
@@ -165,21 +168,24 @@ if __name__ == '__main__':
     start_window = args.start_window 
     end_window = args.end_window
 
+    # Check for missing arguments
+    missing_args = [arg for arg in ['category', 'technique', 'start_window', 'end_window'] if getattr(args, arg) is None]
+
+    if missing_args:
+        missing_list = ', '.join(f'--{arg}' for arg in missing_args)
+        raise ValueError(f"Missing required argument(s): {missing_list}")
+
+
     time_window = get_time_window(start_window, end_window)
     values, conditions, n_subs, n_timepoints = prepare_data(group, region_type, technique, time_window)
+
+    output_folder = f'photo/raincloud/{group}'
+    # Check if the folder exists, if not create it
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
     
     if technique == 'univariate':
-        if region_type == 'separate':
-            measure = 'Diff_amp'
-            data = {
-            'Region': ['Left Hemisphere'] * 2 * n_subs * n_timepoints + ['Midlines'] * 2 * n_subs * n_timepoints + ['Right Hemisphere'] * 2 * n_subs * n_timepoints,
-            'Condition': conditions,
-            measure:  np.concatenate(values)
-            }
-            df = pd.DataFrame(data)
-            plot_raincloud_diff(df, group)
-
-        elif region_type == 'best':
+        if region_type == 'best':
             measure = 'Diff_amp'
             # import pdb; pdb.set_trace()
             data = {
@@ -188,7 +194,17 @@ if __name__ == '__main__':
             measure:  np.concatenate(values)
             }
             df = pd.DataFrame(data)
-            plot_raincloud_diff(df, group)
+            plot_raincloud_diff(df, group, output_folder)
+        
+        # elif region_type == 'separate':
+        #     measure = 'Diff_amp'
+        #     data = {
+        #     'Region': ['Left Hemisphere'] * 2 * n_subs * n_timepoints + ['Midlines'] * 2 * n_subs * n_timepoints + ['Right Hemisphere'] * 2 * n_subs * n_timepoints,
+        #     'Condition': conditions,
+        #     measure:  np.concatenate(values)
+        #     }
+        #     df = pd.DataFrame(data)
+        #     plot_raincloud_diff(df, group, output_folder)
 
     elif technique == 'decoding':
         if region_type == 'best':
@@ -200,17 +216,17 @@ if __name__ == '__main__':
             }
             
             df = pd.DataFrame(data)
-            plot_raincloud_decoding(df, group)
+            plot_raincloud_decoding(df, group, output_folder)
 
-        elif region_type == 'separate':
-            measure = 'Accuracy'
-            data = {
-            'Region': ['Optimal Electrodes'] * 2 * n_subs * n_timepoints + ['Midlines'] * 2 * n_subs * n_timepoints + ['Right Hemisphere'] * 2 * n_subs * n_timepoints,
-            'Condition': conditions,
-            measure:  np.concatenate(values)
-            }
+        # elif region_type == 'separate':
+        #     measure = 'Accuracy'
+        #     data = {
+        #     'Region': ['Optimal Electrodes'] * 2 * n_subs * n_timepoints + ['Midlines'] * 2 * n_subs * n_timepoints + ['Right Hemisphere'] * 2 * n_subs * n_timepoints,
+        #     'Condition': conditions,
+        #     measure:  np.concatenate(values)
+        #     }
             
-            df = pd.DataFrame(data)
-            plot_raincloud_decoding(df, group)
+        #     df = pd.DataFrame(data)
+        #     plot_raincloud_decoding(df, group, output_folder)
 
 

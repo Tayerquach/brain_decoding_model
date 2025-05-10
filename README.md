@@ -15,9 +15,6 @@
 ## Overview
 While traditional ERP analyses, such as univariate approaches, have limitations in providing interpretable visualisations, capturing individual variability, and recognising complex patterns, advanced EEG decoding techniques offer enhanced sensitivity, multivariate analysis capabilities, and greater interpretability. This study demonstrates the efficacy of EEG decoding techniques while providing empirical evidences of the neural mechanisms underlying bottom-up (related to high-order linguistic structure) and top-down (related to next-word predictability) processes, which interact to guide comprehension during reading. We examined how predictability, measured by cloze probability, influences brain response differences between content words (nouns, verbs, adjectives, and adverbs) and function words (pronouns, determiners, auxiliaries, and adpositions), particularly focusing on the N400 time window (300-500 ms post-stimulus), known for its sensitivity to semantic incongruities and predictability in reading.
 
-## Citation
-
-**Link to the paper**:
 
 This repository contains the source code for reproducing the paper, along with step-by-step instructions as follows:
 * [Environment Setup](#environment-setup)
@@ -125,14 +122,13 @@ python run_preparation.py -category=function
 
 ### Extract optimal electrode cluster (N400 time window)
 ```console
-python extract_optimal_channels.py -category=[word-type] -region=[name-of-electrode-region]
+python extract_optimal_channels.py -category=[word-type]
 ```
 * `word-type`: NOUN, VERB, ADJ, ADV, PRON, AUX, DET, ADP, content, function.
-* `name-of-electrode-region`: left_hemisphere, midlines, right_hemisphere.
 
 For example,
 ```console
-python extract_optimal_channels.py -category=content -region=right_hemisphere
+python extract_optimal_channels.py -category=content
 ```
 
 ## Reproduce Results
@@ -140,7 +136,7 @@ python extract_optimal_channels.py -category=content -region=right_hemisphere
 
 ***Parameters:***
 * `word-type`: content, function, NOUN, VERB, ADJ, ADV, PRON, AUX, ADP, DET.
-* `region-name`: left_hemisphere, midlines, right_hemisphere.
+* `region`: all or best (default is best).
 * `permutation`: Conduct cluster-based permutation test or not (True or False).
 * `p_value`: The threshold of p-values (e.g., 0.05, 0.001 ...).
 * `clusterp`: The threshold of cluster-defining p-values (e.g., 0.05, 0.001 ...).
@@ -154,7 +150,7 @@ python run_class_analysis.py -category=[word-type] -region=[region-name] -permut
 For example,
 
 ```console
-python run_class_analysis.py -category=NOUN -region=right_hemisphere -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
+python run_class_analysis.py -category=function -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
 
 ### Decoding EEG signals
@@ -165,7 +161,7 @@ python decode_word_class.py -category=[word-type] -region=[name-region] -permuta
 For example,
 
 ```console
-python decode_word_class.py -category=function -region=right_hemisphere -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
+python decode_word_class.py -category=function -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
 
 ### Rain Cloud Visualisation
@@ -205,6 +201,15 @@ python run_cohen_dz.py -category=NOUN -optimal=True -start_window=300 -end_windo
 
 ## Contact 
 - Boi Mai Quach (Dublin City University, quachmaiboi@gmail.com) 
+- Link to the paper:
+
+## Citation
+```bibtex
+Accept to the 46th Annual Conference of The Cognitive Science Society 2025 (CogSci)
+Citation will be updated upon proceedings publication.
+```
+
+
 
 <!-- MARKDOWN LINKS & IMAGES -->
 [Python.py]: https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54
