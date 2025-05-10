@@ -179,8 +179,8 @@ python decode_word_class.py -category=content -region=best -permutation=True -p_
 ```
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/content/classification_decoding/best/best_decoding_eeg_for_content.jpg" 
-     width="300"
-     height="230"/>
+     width="400"
+     height="300"/>
 </p>
 
 ### Rain Cloud Visualisation
@@ -201,8 +201,8 @@ python run_raincloud.py -category=lexical_class -technique=univariate -start_win
 ```
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/raincloud/lexical_class/together_regions_difference_amplitude_distribution.png" 
-     width="160"
-     height="200"/>
+     width="200"
+     height="250"/>
 </p>
 
 For example,
@@ -213,8 +213,8 @@ python run_raincloud.py -category=lexical_class -technique=decoding -start_windo
 
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/raincloud/lexical_class/together_regions_decoding_accuracy_distribution.png" 
-     width="160"
-     height="200"/>
+     width="200"
+     height="250"/>
 </p>
 
 ### Cohen's dz Analysis
@@ -229,8 +229,8 @@ python run_cohen_dz.py -category=NOUN -optimal=False -start_window=300 -end_wind
 ```
 
 **Output**
-<p align = "center" draggable=”false” ><img src="photo/NOUN/cohen_dz_analysis" 
-     width="250"
+<p align = "center" draggable=”false” ><img src="photo/NOUN/cohen_dz_analysis.png" 
+     width="200"
      height="250"/>
 </p>
 
@@ -242,9 +242,9 @@ python run_cohen_dz.py -category=NOUN -optimal=True -start_window=300 -end_windo
 ```
 
 **Output**
-<p align = "center" draggable=”false” ><img src="photo/NOUN/optimal_cohen_dz_analysis" 
-     width="auto"
-     height="auto"/>
+<p align = "center" draggable=”false” ><img src="photo/NOUN/optimal_cohen_dz_analysis.png" 
+     width="200"
+     height="250"/>
 </p>
 
 ## Contact 
