@@ -234,7 +234,7 @@ python run_cohen_dz.py -category=NOUN -optimal=False -start_window=300 -end_wind
      height="auto"/>
 </p>
 
-Note that the `optimal` parameter will decide whether the optimal electrodes for ERP analysis will be averaged or not. If not, the data will be averaged across all electrodes.
+<!-- Note that the `optimal` parameter will decide whether the optimal electrodes for ERP analysis will be averaged or not. If not, the data will be averaged across all electrodes.
 
 For example,
 ```console
@@ -245,7 +245,7 @@ python run_cohen_dz.py -category=NOUN -optimal=True -start_window=300 -end_windo
 <p align = "center" draggable=”false” ><img src="photo/NOUN/optimal_cohen_dz_analysis" 
      width="auto"
      height="auto"/>
-</p>
+</p> -->
 
 ## Contact 
 - Boi Mai Quach (Dublin City University, quachmaiboi@gmail.com) 
