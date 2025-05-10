@@ -3,12 +3,12 @@ data/EEG_data/raw
 !data/EEG_data/.gitkeep
 results
 utils/__pycache__
-photo/*/
+photo/*
 univariate_data
 decoding_data
 run_cloze_analysis.py
 .vscode
-!photo/content/univariate_data/best/best_ERPs_content.png
+!photo/content/univariate_analysis/best/best_ERPs_content.png
 !photo/content/classification_decoding/best/best_decoding_eeg_for_content.jpg
 !photo/raincloud/lexical_class/together_regions_difference_amplitude_distribution.png
 !photo/raincloud/lexical_class/together_regions_decoding_accuracy_distribution.png
