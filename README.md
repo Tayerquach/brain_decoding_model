@@ -161,11 +161,11 @@ For example,
 python run_class_analysis.py -category=content -region=best -permutation=True -p_value=0.05 -clusterp=0.05 -n_iter=5000
 ```
 
-**Output**
+<!-- **Output**
 <p align = "center" draggable=”false” ><img src="photo/content/univariate_analysis/best/best_ERPs_content.png" 
      width="400"
      height="320"/>
-</p>
+</p> -->
 
 ### Decoding EEG signals
 ```console
