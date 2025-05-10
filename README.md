@@ -179,8 +179,8 @@ python decode_word_class.py -category=content -region=best -permutation=True -p_
 ```
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/content/classification_decoding/best/best_decoding_eeg_for_content.jpg" 
-     width="auto"
-     height="auto"/>
+     width="300"
+     height="230"/>
 </p>
 
 ### Rain Cloud Visualisation
@@ -201,8 +201,8 @@ python run_raincloud.py -category=lexical_class -technique=univariate -start_win
 ```
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/raincloud/lexical_class/together_regions_difference_amplitude_distribution.png" 
-     width="auto"
-     height="auto"/>
+     width="160"
+     height="200"/>
 </p>
 
 For example,
@@ -213,8 +213,8 @@ python run_raincloud.py -category=lexical_class -technique=decoding -start_windo
 
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/raincloud/lexical_class/together_regions_decoding_accuracy_distribution.png" 
-     width="auto"
-     height="auto"/>
+     width="160"
+     height="200"/>
 </p>
 
 ### Cohen's dz Analysis
@@ -234,7 +234,7 @@ python run_cohen_dz.py -category=NOUN -optimal=False -start_window=300 -end_wind
      height="250"/>
 </p>
 
-<!-- Note that the `optimal` parameter will decide whether the optimal electrodes for ERP analysis will be averaged or not. If not, the data will be averaged across all electrodes.
+Note that the `optimal` parameter will decide whether the optimal electrodes for ERP analysis will be averaged or not. If not, the data will be averaged across all electrodes.
 
 For example,
 ```console
@@ -245,7 +245,7 @@ python run_cohen_dz.py -category=NOUN -optimal=True -start_window=300 -end_windo
 <p align = "center" draggable=”false” ><img src="photo/NOUN/optimal_cohen_dz_analysis" 
      width="auto"
      height="auto"/>
-</p> -->
+</p>
 
 ## Contact 
 - Boi Mai Quach (Dublin City University, quachmaiboi@gmail.com) 
