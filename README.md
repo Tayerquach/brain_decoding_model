@@ -163,8 +163,8 @@ python run_class_analysis.py -category=content -region=best -permutation=True -p
 
 **Output**
 <p align = "center" draggable=”false” ><img src="photo/content/univariate_analysis/best/best_ERPs_content.png" 
-     width="250"
-     height="250"/>
+     width="400"
+     height="320"/>
 </p>
 
 ### Decoding EEG signals
